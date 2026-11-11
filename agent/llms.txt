@@ -7,6 +7,7 @@
 ## Pages
 
 - [B2A 战略统帅部 B2A Strategy Command](https://agent.conjurer.us/): Four domains, SWOT, four phases, knowledge bridge. Crawler tech: bait matrix, canary honeypots, HTTP 402 circuit breaker, pSEO, crawler monitoring and pricing, llms.txt as the crawler entry.
+- [卖给 AI Agent：最好的客户不是人 Sell to AI Agents](https://agent.conjurer.us/sell-to-agents): Dru Riley A-grade customer theory (agents pay per use), six proof numbers (Exa, Daytona, Neon, Vercel, Resend, Ahrefs), the AI data toll booth model, 5 copyable B2B data side-businesses, 3 moat gates, 30-day cold-start SOP, tech stack with official links.
 
 ## Author
 
