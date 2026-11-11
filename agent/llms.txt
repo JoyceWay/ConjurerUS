@@ -1,0 +1,13 @@
+# agent.conjurer.us — llms.txt
+# B2A 战略统帅部 · B2A Strategy Command
+
+> agent.conjurer.us is where selling to agents lives: the B2A strategy, the four-domain deployment, SWOT, four phases, and the knowledge bridge. All crawler technology lives here.
+> 这里是卖给 agent 的战略页：四大域名战区、SWOT、四阶段作战室、知识桥。所有爬虫类技术都在这一页。
+
+## Pages
+
+- [B2A 战略统帅部 B2A Strategy Command](https://agent.conjurer.us/): Four domains, SWOT, four phases, knowledge bridge. Crawler tech: bait matrix, canary honeypots, HTTP 402 circuit breaker, pSEO, crawler monitoring and pricing, llms.txt as the crawler entry.
+
+## Author
+
+- 见习召唤师 Apprentice Conjurer (@ConjurerLab): https://x.com/ConjurerLab

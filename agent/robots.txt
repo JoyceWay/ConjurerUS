@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# content-signal
+# search: yes
+# ai-input: yes
+# ai-train: no
+
+Sitemap: https://agent.conjurer.us/sitemap.xml
