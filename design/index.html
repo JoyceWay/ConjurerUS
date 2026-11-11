@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设计风格收集</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: a light table. Each style is one specimen sheet, notes on the left and mounted frames on the right.
+     The style filter is a row of swatches drawn in the styles themselves; everything else stays quiet. */
+  --table:#E9ECF0;
+  --sheet:#FFFFFF;
+  --ink:#161A22;
+  --ink-2:#566072;
+  --line:#CFD5DE;
+  --slot:#F3F5F8;
+  --mark:#D53A27;
+  --on-mark:#FFFFFF;
+  --display:"Bricolage Grotesque","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --body:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --table:#121317;--sheet:#1B1D23;--ink:#ECEEF2;--ink-2:#A0A7B4;--line:#353944;--slot:#22252C;--mark:#FF6B55;--on-mark:#17181C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --table:#121317;--sheet:#1B1D23;--ink:#ECEEF2;--ink-2:#A0A7B4;--line:#353944;--slot:#22252C;--mark:#FF6B55;--on-mark:#17181C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--table);color:var(--ink);font:15.5px/1.7 var(--body)}
+a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--mark)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(16px,3vw,40px)}
+
+/* header */
+.top{padding:clamp(36px,6vw,84px) 0 30px}
+h1{margin:0;font-family:var(--display);font-weight:900;font-size:clamp(46px,9.2vw,124px);line-height:1;letter-spacing:-.03em;text-wrap:balance}
+h1 .en{display:block;font-weight:500;font-size:.3em;letter-spacing:0;color:var(--ink-2);margin-top:.55em}
+.lede{font-size:clamp(17px,1.6vw,21px);margin:24px 0 0;max-width:34em}
+.meta{color:var(--ink-2);margin:8px 0 0;font-size:14.5px;max-width:52em}
+
+/* filters */
+.filters{border-top:2px solid var(--ink);padding:8px 0 0}
+.fgroup{display:grid;grid-template-columns:112px minmax(0,1fr);gap:16px;padding:16px 0 8px;align-items:start}
+.fgroup h2{font-size:14px;font-weight:700;margin:8px 0 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw{appearance:none;font:inherit;cursor:pointer;min-height:66px;padding:8px 11px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:6px;border:1px solid transparent;border-radius:0;line-height:1.15;overflow:hidden;position:relative;transition:opacity .15s}
+.sw .k{font-size:11.5px;opacity:.85}
+.sw .c{font-size:16px;font-weight:700}
+.sw[aria-pressed="true"]{outline:3px solid var(--mark);outline-offset:3px}
+.swatches.has-sel .sw:not([aria-pressed="true"]){opacity:.5}
+.sw.off{opacity:.25}
+.sw:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.sw-all{background:var(--sheet);color:var(--ink);border:1px dashed var(--ink-2)}
+.sw-1{background:#fafafa;color:#111;border-color:#dcdcdc}
+.sw-1 .c{font-weight:500}
+.sw-2{background:#fff;color:#111;font-family:Georgia,"Songti SC","Noto Serif SC",serif;border-top:4px solid #111;border-bottom:1px solid #111}
+.sw-2 .c{font-size:18px}
+.sw-3{background:#f4eee1;color:#2a2520;border-radius:14px;font-family:Georgia,"Songti SC","Noto Serif SC",serif}
+.sw-3::after{content:"";position:absolute;right:12px;top:10px;width:16px;height:16px;border-radius:58% 42% 55% 45%/48% 60% 40% 52%;background:#c8643c}
+.sw-4{background:radial-gradient(120% 100% at 50% 0,rgba(120,100,255,.55),transparent 62%),#0c0c0e;color:#f5f5f5;border-color:rgba(255,255,255,.16);border-radius:8px}
+.sw-5{background:#ffcf33;color:#23203a;border-radius:22px;border-bottom:5px solid #d6a300;padding-left:16px}
+.sw-5 .c{font-weight:900}
+.sw-6{background:#fff;color:#0000ee;border:3px solid #000;font-family:"Times New Roman",Times,"Songti SC",serif}
+.sw-6 .c{text-decoration:underline;font-size:18px}
+.sw-7{background:#0b0b0b;color:#f4f1ea;font-family:Georgia,"Songti SC","Noto Serif SC",serif}
+.sw-7 .k{color:#c9a56b;letter-spacing:.1em}
+.sw-7 .c{font-weight:400;letter-spacing:.2em;border-top:1px solid #b08d57;padding-top:6px}
+.sw-8{background:#05060a;color:#00e5ff;border-color:#00e5ff;font-family:ui-monospace,Menlo,Consolas,monospace;box-shadow:inset 0 0 14px rgba(0,229,255,.35)}
+.sw-8 .k{color:#ff5fe0;font-size:10.5px}
+.sw-9{background:#e30613;color:#fff;font-family:Helvetica,Arial,"PingFang SC",sans-serif}
+.sw-9 .c{font-size:18px;letter-spacing:-.02em}
+.sw-10{background:#f5f5f7;color:#1d1d1f;border-radius:18px;border-color:#dedee4;padding-left:14px}
+.sw-10::after{content:"";position:absolute;right:11px;top:10px;width:30px;height:18px;border-radius:5px;background:linear-gradient(90deg,#0a84ff 0 55%,transparent 55% 63%,#c7c7cf 63%)}
+.sw-11{background:linear-gradient(120deg,#5b3fe0,#d94b93 68%,#f08a3c);color:#fff;border-radius:16px;border-color:rgba(255,255,255,.6);padding-left:14px;text-shadow:0 1px 6px rgba(50,15,110,.45)}
+.sw-12{background:#111;color:#f4f1e8}
+.sw-12 .k{font-size:10.5px}
+.sw-12 .c{font-size:27px;font-weight:900;letter-spacing:-.05em;line-height:.95}
+.sw-13{background:#ffd23f;color:#000;border:2.5px solid #000;border-radius:8px;box-shadow:4px 4px 0 #000}
+.sw-13 .c{font-weight:900}
+.sw-14{background:#0c0c0c;color:#48d597;font-family:ui-monospace,Menlo,Consolas,monospace}
+.sw-14 .k{font-size:10.5px}
+.sw-14 .c::before{content:"> ";color:#f2f2f2}
+.sw-15{background:#fff;color:#1c2b3a;border-color:#cfd6de;box-shadow:inset 0 4px 0 #e8ecf0}
+.sw-15::before{content:"";position:absolute;left:0;top:0;height:4px;width:40%;background:#e4572e}
+
+.sites{display:flex;flex-wrap:wrap;gap:8px;padding-top:2px}
+.chip{appearance:none;font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:999px;padding:7px 14px;font-size:14px;display:inline-flex;gap:8px;align-items:baseline}
+.chip b{font-family:var(--display);font-weight:600}
+.chip small{color:var(--ink-2);font-size:12.5px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.chip[aria-pressed="true"] small{color:inherit;opacity:.78}
+.status{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:14px;color:var(--ink-2);margin:0;padding:12px 0 18px;min-height:56px}
+.clear{appearance:none;font:inherit;font-size:13.5px;cursor:pointer;background:none;border:1px solid var(--ink-2);color:var(--ink);border-radius:999px;padding:3px 12px}
+
+/* style sheets */
+.list{display:grid;gap:18px;padding-bottom:44px}
+.style{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:clamp(18px,2.6vw,34px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:clamp(22px,3vw,46px)}
+.style[hidden]{display:none}
+.head{display:flex;gap:16px;align-items:flex-start}
+.num{font-family:var(--display);font-stretch:75%;font-weight:800;font-size:66px;line-height:.86;color:var(--mark);font-variant-numeric:tabular-nums}
+.style h3{margin:0;display:flex;flex-direction:column;gap:3px}
+.style h3 .cn{font-size:30px;font-weight:900;line-height:1.15;letter-spacing:-.01em}
+.style h3 .en{font-family:var(--display);font-size:17px;font-weight:500;color:var(--ink-2);line-height:1.2}
+.def{font-size:17px;line-height:1.6;margin:16px 0 0;max-width:30em}
+.fit{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 0;font-size:13.5px}
+.fit .lab{color:var(--ink-2)}
+.fit .site{border:1px solid var(--line);border-radius:999px;padding:2px 11px;font-family:var(--display);font-weight:600}
+.fit .site small{font-family:var(--body);font-weight:400;color:var(--ink-2);margin-left:6px;font-size:12px}
+.style h4{font-size:14px;font-weight:700;margin:26px 0 10px;display:flex;gap:4px 10px;align-items:baseline;flex-wrap:wrap}
+.style h4 small{font-weight:400;color:var(--ink-2);font-size:12.5px}
+.shots h4:first-child{margin-top:0}
+.steal{margin:0;padding:0;list-style:none;counter-reset:st;display:grid;gap:12px;max-width:34em}
+.steal li{counter-increment:st;display:grid;grid-template-columns:22px minmax(0,1fr);font-size:15px;line-height:1.65}
+.steal li::before{content:counter(st);font-family:var(--display);font-weight:700;color:var(--mark)}
+.steal b{display:block;font-weight:700}
+.copy{appearance:none;font:inherit;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--ink);background:var(--ink);color:var(--sheet);border-radius:4px;padding:9px 16px;margin-top:18px}
+.copy.sm{background:transparent;color:var(--ink);border:1px solid var(--line);padding:3px 10px;font-size:12.5px;font-weight:500;margin:0}
+.copy.done,.copy.sm.done{background:var(--mark);border-color:var(--mark);color:var(--on-mark)}
+.manual{display:block;width:100%;min-height:150px;margin-top:10px;padding:10px;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;color:var(--ink);background:var(--slot);border:1px solid var(--line);border-radius:4px}
+.manual-note{font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+
+.row{display:grid;gap:14px}
+.row.real{grid-template-columns:repeat(3,minmax(0,1fr))}
+.row.ai{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ex{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.ex figcaption{font-size:13.5px;line-height:1.6;color:var(--ink-2);display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.frame{border:1px solid var(--line);background:var(--sheet);border-radius:3px;overflow:hidden}
+.slot{aspect-ratio:16/10;background:var(--slot);display:grid;place-content:center;justify-items:center;gap:5px;padding:14px;text-align:center;outline:1px dashed var(--line);outline-offset:-8px}
+.slot .nm{font-family:var(--display);font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.2;color:var(--ink);overflow-wrap:anywhere}
+.slot .hint{font-size:12px;color:var(--ink-2)}
+.shot{aspect-ratio:16/10;position:relative;container-type:inline-size;overflow:hidden;background:#fff}
+.strip{display:flex;flex-wrap:wrap;gap:2px 9px;align-items:baseline;padding:7px 9px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.4}
+.strip .id{font-family:var(--display);font-stretch:75%;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;font-size:13.5px}
+.strip .ai{color:var(--mark);font-weight:700}
+.strip a,.strip .scene{color:var(--ink-2);overflow-wrap:anywhere;min-width:0}
+.strip a:hover{color:var(--mark)}
+
+/* mock renders: fixed palettes on purpose, they are pictures */
+.mk{position:absolute;inset:0;overflow:hidden;font-size:2cqw;line-height:1.2;user-select:none;-webkit-user-select:none}
+.mk *{box-sizing:border-box}
+.mk i{display:block;font-style:normal}
+
+/* appendix */
+.appx{border-top:2px solid var(--ink);padding:44px 0 30px;margin-top:6px}
+.appx h2{font-family:var(--display);font-weight:900;font-size:clamp(30px,4.6vw,56px);letter-spacing:-.02em;line-height:1.1;margin:0;text-wrap:balance}
+.appx .intro{max-width:36em;font-size:17px;margin:14px 0 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px;margin-top:28px}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:4px;padding:clamp(18px,2.4vw,32px);min-width:0}
+.sheet h3{font-size:23px;font-weight:900;margin:0 0 4px;line-height:1.3}
+.sheet .sub{color:var(--ink-2);margin:0 0 18px;font-size:14.5px}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.rules b{display:block}
+.steps{list-style:none;margin:0;padding:0;counter-reset:sp;display:grid;gap:14px}
+.steps li{counter-increment:sp;display:grid;grid-template-columns:30px minmax(0,1fr)}
+.steps li::before{content:counter(sp);font-family:var(--display);font-stretch:75%;font-weight:800;font-size:26px;line-height:1.1;color:var(--mark)}
+.steps b{display:block}
+.tpl{white-space:pre-wrap;overflow-wrap:anywhere;font:13.5px/1.75 ui-monospace,Menlo,Consolas,"Noto Sans SC",monospace;background:var(--slot);border:1px solid var(--line);padding:14px 16px;border-radius:4px;margin:18px 0 0}
+.res-sheet{margin-top:18px}
+.res{list-style:none;counter-reset:rs;padding:0;margin:0}
+.res li{counter-increment:rs;display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:4px 16px;padding:15px 0;border-top:1px solid var(--line);align-items:baseline}
+.res li::before{content:counter(rs);font-family:var(--display);font-stretch:75%;font-weight:800;font-size:24px;color:var(--mark);font-variant-numeric:tabular-nums}
+.res .nm{font-weight:700;font-size:16.5px}
+.res p{margin:3px 0 0;max-width:46em}
+.res .u{font-size:12.5px;color:var(--ink-2);overflow-wrap:anywhere}
+.res .kind{font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;color:var(--ink-2);white-space:nowrap}
+footer{color:var(--ink-2);font-size:13.5px;padding:8px 0 60px}
+
+@media (max-width:920px){
+  .style{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  .fgroup{grid-template-columns:minmax(0,1fr);gap:8px}
+  .fgroup h2{margin:0}
+  .row.real,.row.ai{grid-template-columns:minmax(0,1fr)}
+  .res li{grid-template-columns:30px minmax(0,1fr)}
+  .res .kind{grid-column:2;justify-self:start}
+  .num{font-size:52px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>设计风格收集<span class="en">Design Styles</span></h1>
+  <p class="lede">顶级网站的设计风格与做法启示，Joyce 的参考库。</p>
+  <p class="meta">15 种风格，45 个真实网站，30 张 AI 渲染图。每个图片框都有编号：07-R2 是第 7 种风格的第 2 个真实网站，07-A1 是它的第 1 张 AI 渲染图。<a href="#appendix">跳到附录</a></p>
+</header>
+
+<section class="filters" aria-label="筛选">
+  <div class="fgroup">
+    <h2 id="f-style">按风格</h2>
+    <div class="swatches" id="swatches" role="group" aria-labelledby="f-style"></div>
+  </div>
+  <div class="fgroup">
+    <h2 id="f-site">适合哪个站</h2>
+    <div class="sites" id="sites" role="group" aria-labelledby="f-site"></div>
+  </div>
+  <p class="status" id="status" aria-live="polite"></p>
+</section>
+
+<main class="list" id="list"></main>
+
+<section class="appx" id="appendix">
+  <h2>附录：怎么把网页做到顶级好看</h2>
+  <p class="intro">好看不靠灵感，靠几条能重复执行的规则。下面是原理、抄法，和 10 个值得收藏的链接。</p>
+
+  <div class="cols">
+    <div class="sheet">
+      <h3>原理：顶级网站共有的 7 件事</h3>
+      <p class="sub">不管哪种风格，这 7 条都成立。先守住它们，再谈风格。</p>
+      <ul class="rules">
+        <li><b>层级</b>每一屏只有一个最大的东西。字号、字重、颜色各分三档就够，再多就乱。</li>
+        <li><b>间距</b>全站只用一把尺：4 或 8 的倍数。相关的靠近，无关的拉开；拿不准，就把留白翻倍。</li>
+        <li><b>字体</b>最多两款。正文每行 45–75 个英文字符（中文 28–38 字），行高 1.5–1.7；标题行高 1.0–1.2。</li>
+        <li><b>颜色</b>先做黑白稿，再加一个强调色。中性色占九成；不用纯黑纯白，灰色里带一点强调色的色相。</li>
+        <li><b>对齐</b>所有元素贴同一组栏线。圆角、边框、阴影各只留一套数值。</li>
+        <li><b>细节</b>悬停、聚焦、按下、禁用四种状态都要做；动效 150–300ms；用真实文案和真实图片。</li>
+        <li><b>记忆点</b>顶级网站都只在一个地方大胆：一款字体、一个颜色或一个动效。其余全部克制。</li>
+      </ul>
+    </div>
+
+    <div class="sheet">
+      <h3>怎么抄：5 步，抄结构不抄素材</h3>
+      <p class="sub">抄的是网格、层级和数值。对方的 logo、插画、文案、照片不要搬。</p>
+      <ol class="steps">
+        <li><div><b>选</b>定 1 种风格和 2 个参考站。每个站截 3 张图：首屏、一个内容区、页脚。</div></li>
+        <li><div><b>量</b>用浏览器开发者工具量出设计令牌：字体、字号阶梯、行高、底色、文字色、强调色、间距、圆角、栏宽。</div></li>
+        <li><div><b>写</b>把风格名、3 条做法启示、令牌数值、参考站 URL、不要做什么，一起写进 prompt。也可以存成一份 <a href="https://github.com/google-labs-code/design.md">DESIGN.md</a>，以后每次直接交给 AI。</div></li>
+        <li><div><b>换</b>网格、层级、节奏、比例照抄；文字、图片、品牌色、字体全换成自己的。</div></li>
+        <li><div><b>比</b>把成品截图和参考站并排，逐项对字号、留白、对比度，改到差距看不出来。</div></li>
+      </ol>
+      <pre class="tpl" id="tpl">为【网站】设计【页面】。
+风格：【风格名】。
+参考：【URL 1】、【URL 2】（只参考布局、层级和节奏，不复制素材）。
+必须做到：
+1.【做法启示 1】
+2.【做法启示 2】
+3.【做法启示 3】
+设计令牌：字体【】；字号阶梯【】；底色 / 文字色 / 强调色【】；间距基数 8px；圆角【】。
+不要：紫色渐变首屏、默认字体、三栏图标卡片、图库插画、所有东西居中。
+交付前自查：每屏只有一个最大的元素；间距都是 8 的倍数；强调色面积小于 10%。</pre>
+      <button type="button" class="copy" data-copy="tpl">复制 prompt 模板</button>
+    </div>
+  </div>
+
+  <div class="sheet res-sheet">
+    <h3>10 个值得收藏的链接</h3>
+    <p class="sub">前 5 个讲原理，中间 2 个讲工艺和 AI prompt，后 3 个是找参考的库。</p>
+    <ol class="res">
+      <li><div><a class="nm" href="https://www.refactoringui.com">Refactoring UI</a><p>Adam Wathan 和 Steve Schoger 写给不会设计的开发者的书。层级、间距、配色，全是能直接照做的招。</p><span class="u">refactoringui.com</span></div><span class="kind">原理</span></li>
+      <li><div><a class="nm" href="https://anthonyhobday.com/sideprojects/saferules/">Visual design rules you can safely follow every time</a><p>Anthony Hobday 的安全规则清单：不用纯黑纯白、灰色带一点色相、间距成比例。可以当检查表，逐条对 AI 的产出。</p><span class="u">anthonyhobday.com/sideprojects/saferules</span></div><span class="kind">原理</span></li>
+      <li><div><a class="nm" href="https://learnui.design/blog/7-rules-for-creating-gorgeous-ui-part-1.html">7 Rules for Creating Gorgeous UI</a><p>Erik Kennedy 的七条规则：先做黑白稿、留白翻倍、只用好字体。第七条就是「像艺术家一样偷」。</p><span class="u">learnui.design/blog</span></div><span class="kind">原理</span></li>
+      <li><div><a class="nm" href="https://practicaltypography.com">Butterick’s Practical Typography</a><p>免费在线书。先读「十分钟学会排版」那一页，正文字号、行宽、行高的数字都在里面。</p><span class="u">practicaltypography.com</span></div><span class="kind">字体</span></li>
+      <li><div><a class="nm" href="https://lawsofux.com">Laws of UX</a><p>Jon Yablonski 整理的设计心理学法则，解释为什么这样排更好用、更好看。</p><span class="u">lawsofux.com</span></div><span class="kind">原理</span></li>
+      <li><div><a class="nm" href="https://vercel.com/design/guidelines">Web Interface Guidelines</a><p>Vercel 的界面细节清单：交互、动效、布局、表单逐条列出。做完一页，拿它来验收。</p><span class="u">vercel.com/design/guidelines</span></div><span class="kind">工艺</span></li>
+      <li><div><a class="nm" href="https://claude.com/blog/improving-frontend-design-through-skills">Improving frontend design through Skills</a><p>Claude 官方博客：怎么写 prompt 和 Skill，让 AI 做出不千篇一律的前端。和这页的「做法启示」配着用。</p><span class="u">claude.com/blog</span></div><span class="kind">AI prompt</span></li>
+      <li><div><a class="nm" href="https://www.awwwards.com">Awwwards</a><p>网页设计奖项，有每日网站和年度网站。找顶级参考，从这里的获奖名单开始翻。</p><span class="u">awwwards.com</span></div><span class="kind">参考库</span></li>
+      <li><div><a class="nm" href="https://mobbin.com">Mobbin</a><p>真实产品的界面截图库，按页面类型和组件搜。适合抄结构：定价页、注册流程、空状态。</p><span class="u">mobbin.com</span></div><span class="kind">参考库</span></li>
+      <li><div><a class="nm" href="https://fontsinuse.com">Fonts In Use</a><p>按字体查真实案例。看中一个站，先来这里查它用的是什么字。</p><span class="u">fontsinuse.com</span></div><span class="kind">字体</span></li>
+    </ol>
+  </div>
+</section>
+
+<footer>真实网站的链接于 2026 年 11 月 10 日核对过。网站会改版，引用前再打开看一眼。AI 渲染图由 Claude 用代码绘制，画面里的品牌名都是虚构的。</footer>
+</div>
+
+<script>
+const SITES={'conjurerlab.com':'思想站','aisummoner.com':'产品站','hustleaesthetics.net':'agent 站','hustleaesthete.com':'案例站','conjurer.us':'武器库'};
+
+const S=[
+{n:1,cn:'极简主义',en:'Minimalist',def:'少即是多：留白、克制，一屏只说一件事。',fit:['hustleaesthetics.net','conjurer.us'],
+ real:[['iA','https://ia.net','黑白两色、一套字体，全靠字号和行距分层级，几乎没有装饰。'],
+       ['Teenage Engineering','https://teenage.engineering','产品图就是全部视觉，文字很小、网格很松，留白本身成了品牌。'],
+       ['Vitsœ','https://www.vitsoe.com','Dieter Rams「少，但更好」的网页版：灰白底、无衬线、照片克制。']],
+ steal:[['一屏一件事','首屏只留 1 个标题、1 句副文案、1 个按钮。标题 56–72px、字重 500；副文案 18–20px；其余全部删掉。'],
+        ['留白用 8 的倍数','区块上下留 120–160px；正文栏宽不超过 640px（约 34 个汉字或 65 个英文字符）。'],
+        ['配色 2+1','近白底 #FAFAFA、近黑字 #111，再加 1 个强调色。强调色只用在按钮和链接上，面积小于 5%。']],
+ ai:[{t:'产品首页首屏',p:'近白底 #FAFAFA，左对齐一个 72px 中等字重标题、一句灰色副文案、一个黑色小按钮；右侧大面积留白，只有一个橙色小圆点做强调。'},
+     {t:'工具列表页',p:'白底，左对齐小标题，下面是 5 行纯文字列表，行间用 1px 浅灰线分隔，左边名称、右边灰色分类，只有一行是橙色。'}]},
+{n:2,cn:'编辑 / 杂志风',en:'Editorial',def:'大标题、网格、衬线体：像翻一本排得很好的杂志。',fit:['conjurerlab.com'],
+ real:[['The New Yorker','https://www.newyorker.com','衬线标题、窄栏正文、细分隔线，一眼就知道是给人认真读的。'],
+       ['Monocle','https://monocle.com','严格分栏，黑白加一点强调色，小号栏目标签，纸刊感最完整。'],
+       ['Works in Progress','https://worksinprogress.co','思想类长文站：大衬线标题配定制插图，每一期都像一本杂志。']],
+ steal:[['标题大，正文稳','标题用衬线体 64–96px、行高 1.05、字距 -0.02em；正文 18–20px、行高 1.6、栏宽 600–680px。'],
+        ['用线分区，不用卡片','12 栏网格，头条占 8 栏、侧栏占 4 栏，栏间距 24–32px；区块之间只用 1px 细线。'],
+        ['文章三件套','每篇配栏目标签（12px、字距 0.08em）、作者、日期；正文里加首字下沉，或一句 28–32px 的斜体大引言。']],
+ ai:[{t:'杂志首页',p:'白底黑字，顶部居中衬线刊名加一条粗线，下方 12 栏网格：左侧 8 栏放一条 96px 衬线大标题和导语，右侧 4 栏是三条小标题短讯，用细线分隔，只有栏目标签是红色。'},
+     {t:'长文页',p:'居中窄栏 640px，红色小栏目标签、衬线大标题、作者行，正文首字下沉占三行，中间一条上下带细线的斜体大引言，右侧页边有一条灰色小注。'}]},
+{n:3,cn:'温暖人文',en:'Warm Editorial',def:'暖纸、暖色、手绘感：把科技讲得有人味。',fit:['aisummoner.com','conjurerlab.com'],
+ real:[['Anthropic','https://www.anthropic.com','纸感暖底、衬线标题、手绘几何插画，把 AI 讲得有人味。'],
+       ['Every','https://every.to','暖色底配衬线大标题，每篇文章都有定制插画，媒体和产品做成了一体。'],
+       ['Granola','https://www.granola.ai','奶油色底、橄榄绿按钮、黄色荧光笔划重点，把 AI 笔记做得像一本纸质记事本。']],
+ steal:[['底色不用纯白','用暖纸色 #F5F0E6 或 #FAF7F0，文字用暖黑 #1F1B16；强调色只选 1 个：陶土橙 #C96442 或橄榄绿 #5B6B3A。'],
+        ['衬线标题配无衬线正文','标题用衬线体（思源宋体或 Source Serif）44–64px，正文无衬线 17–18px；圆角统一 12–16px，基本不用阴影。'],
+        ['插画代替图库照片','每个区块配一张手绘或剪纸风插图：线条粗 2–3px、不超过 3 色、全站同一种画法。']],
+ ai:[{t:'产品首页首屏',p:'暖纸色底 #F4EFE4，左侧衬线大标题和陶土橙圆角按钮，右侧是陶土橙、橄榄绿、米黄三色的手绘剪纸风抽象形状，上面叠一条手画的弧线。'},
+     {t:'文章卡片列表',p:'米色底，衬线小标题，三张圆角 16px 的卡片，每张顶部是一块暖色手绘几何插图，下面是衬线标题和两行摘要。'}]},
+{n:4,cn:'深色沉浸',en:'Dark Immersive',def:'深底、发光、高对比：让产品界面自己发光。',fit:['conjurer.us'],
+ real:[['Linear','https://linear.app','近黑底、微光渐变、极细描边，定义了这一代 SaaS 的深色风。'],
+       ['Raycast','https://www.raycast.com','深底上用红色辉光和玻璃质感托出产品界面，质感很贵。'],
+       ['Resend','https://resend.com','纯黑底、大标题、发光的 3D 物件，开发者工具的沉浸范本。']],
+ steal:[['底色别用纯黑','背景 #0A0A0B 到 #111113；卡片比背景亮 3–4%（#161618）；边框 1px、白色 8% 透明度。'],
+        ['全页只有一处光源','标题后面放 1 个径向辉光：品牌色、透明度 15–25%、模糊 120px 以上，整页最多出现 2 次。'],
+        ['文字分三级灰','标题 #F5F5F5、正文 #A1A1AA、次要 #6B6B73；标题 56–72px、字重 500–600、字距 -0.03em。']],
+ ai:[{t:'产品首页首屏',p:'近黑底，顶部中央一团紫色径向辉光，居中白色大标题、灰色副文案、一白一描边两个按钮，底部露出半截带细描边和紫色外发光的深色应用界面。'},
+     {t:'功能卡片区',p:'近黑底，左对齐标题，三张深灰卡片带 1px 半透明描边，每张顶部一小团不同颜色的辉光，中间一张展示 ⌘K 键帽。'}]},
+{n:5,cn:'活泼',en:'Playful',def:'亮色、圆角、插画、动效：让人忍不住想点。',fit:['aisummoner.com'],
+ real:[['Duolingo','https://www.duolingo.com','高饱和绿、吉祥物、厚底按钮，每个元素都在蹦。'],
+       ['Headspace','https://www.headspace.com','橙色圆脸角色配软萌插画，把冥想做得一点压力都没有。'],
+       ['Mailchimp','https://mailchimp.com','明黄底配手绘怪插画，证明 B2B 也可以有幽默感。']],
+ steal:[['圆角给足，按钮有厚度','按钮全圆角，卡片 24–32px；按钮底部加 4px 深一号的实色边，按下时下沉 4px。'],
+        ['1 个主色加 3 个糖果色','高饱和主色占大约 60%，再配 3 个辅色；文字用深灰 #3C3C3C，不用纯黑。'],
+        ['一个角色贯穿全站','吉祥物在首屏、空状态、404、成功页各出现一次；悬停时放大到 1.05，时长 150–250ms，带一点回弹。']],
+ ai:[{t:'产品首页首屏',p:'明黄色底，左侧超粗圆体大标题和一个带厚底的粉色圆角按钮，右侧是一只原创的青绿色圆滚滚小怪物吉祥物（大眼睛、微笑、小短脚），周围撒着彩色星星和纸屑。'},
+     {t:'功能卡片',p:'白底，三张粉、薄荷绿、淡紫的大圆角卡片，各自微微倾斜，每张有一个贴纸感的图形和粗体标题。'}]},
+{n:6,cn:'粗野主义',en:'Brutalist',def:'裸露、粗糙、反精致：不装饰本身就是态度。',fit:['hustleaesthete.com'],
+ real:[['Balenciaga','https://www.balenciaga.com','奢侈品牌的官网冷硬得像一份商品目录：黑白两色，几乎没有品牌装饰。'],
+       ['Yale School of Art','https://www.art.yale.edu','一个师生都能随手改的 wiki 官网，背景和排版一直在变，结构完全裸露。'],
+       ['Brutalist Websites','https://brutalistwebsites.com','Pascal Deville 维护的粗野主义网站收录库，找参考先翻这里。']],
+ steal:[['只用系统字体','Times New Roman、Arial、Courier 三选一；标题直接 80–160px、行高 0.9，不做字距微调。'],
+        ['零圆角、零阴影、零渐变','边框统一 2–4px 纯黑实线；链接保留默认蓝 #0000EE 加下划线。'],
+        ['把结构露出来','表格、编号、文件名、日期直接展示；配色只用黑白加 1 个刺眼的原色（纯红 #FF0000 或纯蓝 #0000FF）。']],
+ ai:[{t:'案例索引页',p:'纯白底，Times New Roman 大标题，默认蓝色下划线链接，一张粗黑框表格列出编号、项目、年份、状态，底部一条纯红通栏字幕。'},
+     {t:'案例详情页',p:'白底，超大 Arial Black 黑字顶到边缘、行高极紧，压在一块纯蓝色图片占位上，图片上用等宽字写着文件名，页脚是默认蓝色的上一个、下一个链接。'}]},
+{n:7,cn:'奢华',en:'Luxury',def:'大留白、细线、克制的金与黑：慢，就是贵。',fit:['conjurerlab.com'],
+ real:[['Aman','https://www.aman.com','全屏慢镜头影像、很小的衬线字、大量留白，一点都不推销。'],
+       ['Aesop','https://www.aesop.com','暖灰底、细衬线、整齐的产品陈列，文案写得像文学。'],
+       ['Bang & Olufsen','https://www.bang-olufsen.com','大幅产品摄影配细线和小字，把音响当雕塑来拍。']],
+ steal:[['字小，字距大','导航和标签用 11–13px、字距 0.15–0.25em；标题用细字重（300）衬线体 40–56px。'],
+        ['留白翻倍','区块间距 160–240px；图片占屏 60% 以上；文字块最宽 480px，居中或贴左下。'],
+        ['配色 3 色封顶','黑 #0B0B0B、象牙白 #F4F1EA、哑金 #B08D57；金色只用在 1px 细线和小字上。所有动效 600–900ms 缓出。']],
+ ai:[{t:'品牌首页首屏',p:'纯黑底，顶部居中宽字距小字品牌名，画面中央一条 1px 哑金竖线，下面是细字重衬线标题和一行金色宽字距小字，四周大面积留黑。'},
+     {t:'品牌故事页',p:'象牙白底，左侧一张占屏三分之一的高瘦灰褐色照片，右侧窄文字块：金色小字章节名、细衬线标题、一条细线、三行正文、带下划线的小字链接。'}]},
+{n:8,cn:'科技未来',en:'Tech / Futuristic',def:'深色、霓虹、动效、3D：像走进界面里的世界。',fit:['hustleaesthetics.net'],
+ real:[['Igloo Inc','https://www.igloo.inc','整站是一个可以滚动穿行的 3D 冰原，拿下 Awwwards 2024 年度网站。'],
+       ['Lusion','https://lusion.co','实时 3D 加物理互动，首屏就是能玩的物体。'],
+       ['Active Theory','https://activetheory.net','霓虹光效和全屏 WebGL 空间导航，老牌创意科技工作室。']],
+ steal:[['只放一个 3D 主体','首屏放 1 个可交互 3D 物体（Three.js 或 Spline），跟随鼠标转动 5–10°；其余页面保持平面。'],
+        ['深底配 2 个霓虹色','背景 #05060A；霓虹选青 #00E5FF 加品红 #FF2BD6（或酸绿 #B6FF00），只用于描边、光点和数据，面积小于 10%。'],
+        ['加 HUD 细节','10–12px 等宽小字标注坐标、版本号、状态；配 1px 网格线和四角取景框；滚动转场 800–1200ms。']],
+ ai:[{t:'首页首屏',p:'深蓝黑底，右侧一颗发青光的 3D 球体套一圈品红色轨道环，下方是向远处延伸的青色透视网格地面，左侧粗体大写标题和霓虹描边按钮，四角有取景框和等宽小字读数。'},
+     {t:'Agent 控制台',p:'深色底，中央是青色同心圆雷达，带扫描扇面和酸绿色光点，左侧是带状态点的 agent 列表，右侧是品红色数据条，四角有取景框。'}]},
+{n:9,cn:'瑞士网格',en:'Swiss Grid',def:'网格、无衬线、左对齐：信息本身就是设计。',fit:['hustleaesthete.com','conjurer.us'],
+ real:[['Pentagram','https://www.pentagram.com','严格网格、黑白、一种无衬线，让作品图自己说话。'],
+       ['Experimental Jetset','https://www.experimentaljetset.nl','Helvetica 的信徒：几乎只有文字，左对齐，结构清楚到极点。'],
+       ['Klim Type Foundry','https://klim.co.nz','字体厂牌官网：网格克制，字号对比强，细节极准。']],
+ steal:[['一种无衬线走到底','Helvetica Now、Neue Haas 或同类；只用 2 个字重（400、700）和 3 个字号（14、24、72px）。'],
+        ['全部左对齐，贴栏线','12 栏网格，不居中；间距只用 8、16、32、64、128px 这五档。'],
+        ['黑白加 1 个信号色','信号色用瑞士红 #E30613；案例列表用大号编号（01、02…）加细线表格来组织。']],
+ ai:[{t:'工作室首页',p:'白底，左侧 5 栏宽的纯红色块里是白色 Helvetica 粗体三行标题，右侧黑色小字按栏线左对齐，排成带编号的目录，行间是细线。'},
+     {t:'案例索引',p:'白底，左上粗体小标题，下面四行案例：每行一个大号粗体编号、项目名、灰色客户名、右对齐年份，行间 1px 细线，只有一个编号是红色，背景隐约可见 12 栏参考线。'}]},
+{n:10,cn:'便当格',en:'Bento Grid',def:'大小不一的圆角格子：一屏装下所有卖点。',fit:['aisummoner.com','conjurer.us'],
+ real:[['Apple','https://www.apple.com','产品页和发布会总结页都用大小不一的卡片拼卖点，便当格的范本。'],
+       ['Notion','https://www.notion.com','首页把各个功能装进不同尺寸的卡片，每格一个小演示。'],
+       ['Bento Grids','https://bentogrids.com','专门收录便当格布局的灵感库，找排法直接翻。']],
+ steal:[['网格和尺寸定死','4 栏或 6 栏，格间距 16–24px，圆角 24–32px；卡片只用 1×1、2×1、2×2 三种尺寸，最大的格放主卖点。'],
+        ['一格只说一个点','每格 1 个 20–24px 短标题，加 1 个图形、数字或小演示；文字不超过 2 行。'],
+        ['只让 1–2 格有颜色','浅灰底 #F5F5F7 配白卡（或黑底配 #1C1C1E 卡）；整面墙只有 1–2 格用品牌色填满，当视觉锚点。']],
+ ai:[{t:'浅色卖点墙',p:'浅灰底，居中小标题，下面 4 栏便当格：左侧一个 2×2 蓝紫渐变大格写着大数字，右侧一个 2×1 白格和两个 1×1 白格，分别是开关、百分比数字、一排头像，圆角 24px。'},
+     {t:'深色卖点墙',p:'纯黑底，6 栏便当格，深灰圆角卡片：上排一格柱状图、一格大标题，下排三格分别是环形进度、键帽、色板，其中只有一格填满橙色。'}]},
+{n:11,cn:'玻璃与极光',en:'Glass / Aurora',def:'流动渐变加毛玻璃：柔和、通透、有景深。',fit:['aisummoner.com','hustleaesthetics.net'],
+ real:[['Stripe','https://stripe.com','首屏那片流动的彩色渐变是它的标志，科技公司用渐变的教科书。'],
+       ['Luma','https://luma.com','柔和渐变底配半透明毛玻璃卡片，活动页做得轻盈通透。'],
+       ['Reflect','https://reflect.app','深色底上的紫色辉光和玻璃面板，常被列为玻璃拟态的代表。']],
+ steal:[['背景用 3–4 色网格渐变','例如紫 #7A5CFF、粉 #FF7AB6、橙 #FFB36B、青 #5CE1E6，模糊 80–120px；可以缓慢流动，20–30 秒一个循环。'],
+        ['玻璃卡片的配方','白色 12–20% 透明度的底，backdrop-filter: blur(16–24px)，1px 白色 30% 描边，圆角 20–24px。'],
+        ['玻璃只用一层','只给导航或主卡片用玻璃；玻璃上的字用纯白或近黑，对比度保持 4.5:1 以上，别用灰字。']],
+ ai:[{t:'首页首屏',p:'紫、粉、橙、青四色柔和极光渐变背景，顶部一条胶囊形毛玻璃导航，中央一张大圆角毛玻璃卡片，里面是白色粗体标题、副文案和白色胶囊按钮。'},
+     {t:'应用界面',p:'淡紫到粉到杏色的浅色渐变背景，左侧一条毛玻璃侧栏，右侧一张毛玻璃主面板带半透明柱状图，右上角浮着一枚玻璃小标签，文字是深蓝黑色。'}]},
+{n:12,cn:'大字排版',en:'Big Type',def:'字就是图：用超大字号和字体个性撑起整页。',fit:['conjurerlab.com','hustleaesthete.com'],
+ real:[['Pangram Pangram','https://pangrampangram.com','字体厂牌，整屏用超大字展示字体本身。'],
+       ['Collins','https://www.wearecollins.com','品牌工作室，靠巨大的标题和大胆配色撑起首屏。'],
+       ['Dinamo','https://abcdinamo.com','字体就是界面，排版实验做得很彻底。']],
+ steal:[['标题大到被裁切','首屏标题 font-size: clamp(72px, 12vw, 200px)，行高 0.9，字距 -0.04em；允许超出屏幕边缘。'],
+        ['只选 1 款有个性的标题字体','标题用一款展示字体，正文配中性无衬线 16–18px；首屏不放大图。'],
+        ['用字号差做层级','最大和最小字号的比至少 8:1（例如 160px 对 14px），中间不设过渡字号。']],
+ ai:[{t:'首页首屏',p:'黑底，一个米白色超粗无衬线英文单词大到撑满整屏并被右边缘裁掉，顶部一行 14px 小字，底部三栏 14px 小字说明，没有任何图片。'},
+     {t:'导航目录页',p:'白底，四行超大粗体中文词语竖向排列当导航，其中一行特别大并且是镂空描边字，每行右侧对齐很小的编号。'}]},
+{n:13,cn:'新粗野',en:'Neo-Brutalism',def:'粗黑边、硬阴影、糖果色：粗野主义的可爱版。',fit:['aisummoner.com','hustleaesthete.com'],
+ real:[['Gumroad','https://gumroad.com','米白底、亮粉色块、黑描边，新粗野里被引用最多的那个站。'],
+       ['Feastables','https://feastables.com','零食品牌官网：高饱和色块配粗体大字，直白又好玩。'],
+       ['Neobrutalism components','https://www.neobrutalism.dev','专为这个风格做的开源组件库，粗边框和硬阴影的参数可以直接抄。']],
+ steal:[['粗边框加硬阴影','卡片和按钮统一 2–3px 纯黑边框，阴影不带模糊：box-shadow: 4px 4px 0 #000；悬停时向右下移 2px，阴影同步缩短。'],
+        ['米白底配 3 个高饱和色块','底 #FFFDF5；色块用黄 #FFD23F、粉 #FF90E8、蓝 #3B82F6；文字一律纯黑。'],
+        ['字要粗，圆角二选一','标题用 700–900 字重的无衬线 48–80px；圆角全站要么 0，要么 8–12px，不混用。']],
+ ai:[{t:'产品首页首屏',p:'米白底，左侧超粗黑色大标题，粉色和白色两个按钮都带粗黑边和右下硬阴影，右侧叠着一黄一蓝两张微微旋转的黑边卡片，黄卡上是大号金额数字和柱状图，旁边贴一颗粉色星星。'},
+     {t:'价格页',p:'米白底，三张并排价格卡：白、黄、粉，每张粗黑边加硬阴影，中间黄色那张上移突出，每张有大号价格、几行说明和黑色按钮。'}]},
+{n:14,cn:'终端等宽',en:'Terminal / Mono',def:'等宽字体、字符装饰、命令行隐喻：给懂行的人看。',fit:['conjurer.us','hustleaesthetics.net'],
+ real:[['Oxide Computer','https://oxide.computer','深色底、绿色等宽字、字符画图示，把服务器公司做出了终端美学。'],
+       ['U.S. Graphics Company','https://usgraphics.com','Berkeley Mono 的出品方，整站像一份带编号的技术规格书。'],
+       ['Ghostty','https://ghostty.org','终端模拟器的官网，首屏就是一只字符画的幽灵。']],
+ steal:[['全站 1 款等宽字体','Berkeley Mono、JetBrains Mono 或 IBM Plex Mono；正文 13–15px、行高 1.5，所有元素对齐到字符网格。'],
+        ['用字符当装饰','用 ┌─┐ 边框、[ OK ] 状态标签、> 提示符、点线目录，代替图标和卡片阴影。'],
+        ['配色二选一','黑底 #0C0C0C 配磷光绿 #48D597 或琥珀 #FFB000；或者纸白 #F4F1E8 配墨黑，加 1 个橙色警示色。']],
+ ai:[{t:'终端式首页',p:'黑底绿色等宽字，一个带标题的细线边框里是命令行输出：> ls tools/ 后面四行目录名、数量和 [ OK ] 状态标签，最后一行是带光标的命令。'},
+     {t:'规格书式页面',p:'纸白底墨黑等宽字，顶部一行文档编号，左侧是带点线引导的键值参数表，右侧是三个黑框方块组成的流程图，角上一个橙色小方块。'}]},
+{n:15,cn:'滚动叙事',en:'Scrollytelling',def:'滚动就是播放：用滚动驱动图表、画面和故事。',fit:['hustleaesthete.com','conjurerlab.com'],
+ real:[['The Pudding','https://pudding.cool','数据视觉长文，文字滚过去，图表跟着变。'],
+       ['NYT「Snow Fall」','https://www.nytimes.com/projects/2012/snow-fall/','2012 年的多媒体长文，后来的滚动叙事都从它学。'],
+       ['Reuters Graphics','https://www.reuters.com/graphics/','新闻图表叙事的常青团队，范例多，更新勤。']],
+ steal:[['图固定，字滚动','图表或画面用 position: sticky 固定在一侧，占 60% 宽；320–400px 宽的文字卡片逐段滚过，触发画面变化。'],
+        ['一步只讲一个点','每步 40–80 字，对应 1 次画面变化；全篇 5–9 步；顶部放 2–3px 高的进度条。'],
+        ['开头结尾都给全景','开场一屏全幅画面加一个提问式标题（48–72px），结尾回到全景并给出行动按钮；动效跟滚动进度走，不自动播放。']],
+ ai:[{t:'数据故事页',p:'白底，顶部一条细进度条走到 40%，左侧 60% 是固定的折线图，其中一段用橙红色高亮并带标注圆点，右侧竖排三张文字卡片，只有中间一张是高亮状态，其余半透明。'},
+     {t:'章节开场页',p:'全幅画面：深蓝到暖橙的天空下三层深浅不同的山脊剪影，左上是超大白色章节编号和标题，右侧竖排五个章节圆点（第二个高亮），底部居中一个向下滚动的提示。'}]}
+];
+
+/* ---------- AI renders, drawn in CSS. Sizes use cqw so each picture scales with its frame. ---------- */
+const SANS="'Helvetica Neue',Helvetica,Arial,'PingFang SC','Noto Sans SC',sans-serif";
+const SERIF="Georgia,'Times New Roman','Songti SC','Noto Serif SC',serif";
+const MONO="ui-monospace,'SF Mono',Menlo,Consolas,'Noto Sans SC',monospace";
+const ROUND="'Arial Rounded MT Bold','Nunito','PingFang SC','Noto Sans SC',sans-serif";
+const STAR='polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)';
+const g=(w,c,h=1,mt=1.3)=>`<i style="width:${w}%;height:${h}cqw;margin-top:${mt}cqw;background:${c};border-radius:9cqw"></i>`;
+const corners=c=>[['top','left'],['top','right'],['bottom','left'],['bottom','right']].map(([v,h])=>`<i style="position:absolute;${v}:2.4cqw;${h}:2.4cqw;width:3cqw;height:3cqw;border-${v}:.2cqw solid ${c};border-${h}:.2cqw solid ${c}"></i>`).join('');
+const NB='border:.38cqw solid #000;box-shadow:.7cqw .7cqw 0 #000';
+const GL='background:rgba(255,255,255,.38);border:.14cqw solid rgba(255,255,255,.7);backdrop-filter:blur(2cqw);-webkit-backdrop-filter:blur(2cqw);border-radius:2.4cqw';
+
+const M={
+'1-1':`<div class="mk" style="background:#fafafa;color:#111;font-family:${SANS}">
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding:4cqw 8cqw 0;font-size:1.6cqw"><b style="font-weight:600;font-size:2.1cqw">Plain</b><span style="color:#888">产品　文档　登录</span></div>
+<div style="padding:13cqw 8cqw 0"><div style="font-size:7.4cqw;font-weight:500;letter-spacing:-.03em;line-height:1.06">一次只做<br>一件事。</div><div style="font-size:1.9cqw;color:#666;margin-top:3cqw">安静的写作工具。没有侧栏，没有通知。</div><span style="display:inline-block;margin-top:4cqw;background:#111;color:#fff;font-size:1.7cqw;padding:1.1cqw 2.6cqw;border-radius:.5cqw">开始写</span></div>
+<i style="position:absolute;right:13cqw;top:27cqw;width:2.4cqw;height:2.4cqw;border-radius:50%;background:#ff4f00"></i></div>`,
+
+'1-2':`<div class="mk" style="background:#fff;color:#111;font-family:${SANS};padding:7cqw 10cqw">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:3.2cqw;font-weight:500;letter-spacing:-.02em">工具</b><span style="font-size:1.5cqw;color:#999">23 件</span></div>
+<div style="margin-top:4cqw">${[['Prompt 模板库','写作'],['配色检查器','设计'],['截图标注','效率'],['字体配对表','设计'],['发布清单','流程']].map((r,i)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:2.1cqw 0;border-top:.14cqw solid #e6e6e6;font-size:2.1cqw${i===1?';color:#ff4f00':''}"><span>${r[0]}</span><span style="font-size:1.5cqw;color:#999">${r[1]}</span></div>`).join('')}</div></div>`,
+
+'2-1':`<div class="mk" style="background:#fff;color:#111;font-family:${SERIF};padding:3.5cqw 6cqw">
+<div style="display:flex;justify-content:space-between;font:1.2cqw ${SANS};letter-spacing:.06em;color:#555"><span>第 12 期</span><span>2026 年秋</span></div>
+<div style="text-align:center;font-size:5.4cqw;font-weight:700;letter-spacing:.06em;padding:1cqw 0 1.6cqw;border-bottom:.5cqw solid #111">常识季刊</div>
+<div style="border-top:.12cqw solid #111;margin-top:.5cqw;display:grid;grid-template-columns:8fr 4fr;gap:3cqw;padding-top:3cqw">
+<div><div style="font:600 1.2cqw ${SANS};letter-spacing:.08em;color:#c8102e">长文</div><div style="font-size:7cqw;line-height:1.06;font-weight:700;letter-spacing:-.02em;margin-top:1.2cqw">慢，是一种<br>竞争力</div><div style="font-size:1.9cqw;line-height:1.5;color:#444;margin-top:2cqw">当所有人都在加速，把一件事想清楚，反而成了稀缺的能力。</div><div style="font:1.2cqw ${SANS};color:#777;margin-top:1.6cqw">撰文 林见山　插画 阿野</div></div>
+<div style="border-left:.12cqw solid #111;padding-left:3cqw">${[['观点','读书不是为了记住'],['方法','给想法留一张桌子'],['来信','一位读者的反驳']].map((r,i)=>`<div style="padding:${i?1.8:0}cqw 0 1.8cqw;${i?'border-top:.12cqw solid #bbb':''}"><div style="font:600 1.1cqw ${SANS};letter-spacing:.08em;color:#c8102e">${r[0]}</div><div style="font-size:2.1cqw;font-weight:700;line-height:1.25;margin-top:.6cqw">${r[1]}</div>${g(100,'#d6d6d6',.8)}${g(74,'#d6d6d6',.8)}</div>`).join('')}</div>
+</div></div>`,
+
+'2-2':`<div class="mk" style="background:#fff;color:#111;font-family:${SERIF}">
+<div style="width:56cqw;margin:5cqw auto 0">
+<div style="font:600 1.2cqw ${SANS};letter-spacing:.08em;color:#c8102e">观点</div>
+<div style="font-size:4.6cqw;font-weight:700;line-height:1.12;margin-top:1cqw;letter-spacing:-.01em">我们为什么需要<br>更慢的互联网</div>
+<div style="font:1.2cqw ${SANS};color:#777;margin-top:1.4cqw;padding-bottom:1.6cqw;border-bottom:.12cqw solid #ddd">林见山　2026 年 11 月 10 日　阅读 9 分钟</div>
+<div style="display:flex;gap:1.4cqw;margin-top:2.2cqw"><span style="font-size:9.4cqw;line-height:.86;font-weight:700">当</span><div style="flex:1">${g(100,'#cfcfcf',1,.6)}${g(100,'#cfcfcf')}${g(94,'#cfcfcf')}</div></div>
+${g(100,'#cfcfcf')}${g(66,'#cfcfcf')}
+<div style="margin:2.6cqw 0 1.4cqw;padding:1.8cqw 0;border-top:.12cqw solid #111;border-bottom:.12cqw solid #111;font-size:2.7cqw;font-style:italic;line-height:1.35;text-align:center">“注意力是这个时代最贵的纸张。”</div>
+${g(100,'#cfcfcf')}${g(88,'#cfcfcf')}
+</div>
+<div style="position:absolute;right:4cqw;top:31cqw;width:13cqw;font:1.1cqw/1.5 ${SANS};color:#999;border-top:.12cqw solid #ccc;padding-top:.8cqw">注 1　数据来自作者 2025 年的读者调查。</div></div>`,
+
+'3-1':`<div class="mk" style="background:#f4efe4;color:#2a2520;font-family:${SANS}">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:3.6cqw 6cqw 0;font-size:1.6cqw"><b style="font:700 2.6cqw ${SERIF}">Hearth</b><span style="color:#6b6257">功能　故事　价格</span></div>
+<div style="position:absolute;left:6cqw;top:17cqw;width:44cqw"><div style="font:500 5.6cqw/1.16 ${SERIF};letter-spacing:-.01em">帮你把想法<br>慢慢讲清楚</div><div style="font-size:1.8cqw;line-height:1.6;color:#6b6257;margin-top:2.4cqw">一个不催你的写作助手，像坐在旁边的朋友。</div><span style="display:inline-block;margin-top:3.4cqw;background:#c8643c;color:#fff8ee;font-size:1.8cqw;padding:1.3cqw 3cqw;border-radius:1.6cqw">免费试用</span></div>
+<i style="position:absolute;right:9cqw;top:14cqw;width:30cqw;height:32cqw;background:#c8643c;border-radius:58% 42% 55% 45%/48% 60% 40% 52%;transform:rotate(-8deg)"></i>
+<i style="position:absolute;right:5cqw;top:34cqw;width:17cqw;height:17cqw;background:#6b7a3a;border-radius:50% 50% 46% 54%/55% 48% 52% 45%"></i>
+<i style="position:absolute;right:31cqw;top:10cqw;width:10cqw;height:10cqw;background:#e9c46a;border-radius:50%"></i>
+<i style="position:absolute;right:10cqw;top:21cqw;width:27cqw;height:15cqw;border:.4cqw solid transparent;border-top-color:#2a2520;border-radius:50%;transform:rotate(14deg)"></i></div>`,
+
+'3-2':`<div class="mk" style="background:#faf6ee;color:#2a2520;font-family:${SANS};padding:5cqw 6cqw">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font:500 3.8cqw ${SERIF}">本周来信</b><span style="font-size:1.4cqw;color:#8a7f70">第 48 封</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2.4cqw;margin-top:3.4cqw">${[['#e7b08a','#c8643c','先写给一个人看'],['#c9d1a0','#6b7a3a','笔记不是仓库'],['#efd9a0','#b98a2e','留白也是内容']].map(r=>`<div style="background:#fffaf0;border-radius:2cqw;overflow:hidden;border:.12cqw solid #eadfcb"><div style="height:16cqw;background:${r[0]};position:relative"><i style="position:absolute;left:28%;bottom:0;width:44%;height:72%;background:${r[1]};border-radius:50% 50% 0 0/60% 60% 0 0"></i><i style="position:absolute;right:14%;top:14%;width:3.4cqw;height:3.4cqw;border-radius:50%;background:#fffaf0"></i></div><div style="padding:2cqw 2cqw 2.4cqw"><div style="font:500 2.1cqw/1.3 ${SERIF}">${r[2]}</div>${g(100,'#e3d9c6')}${g(70,'#e3d9c6')}<div style="font-size:1.3cqw;color:#8a7f70;margin-top:1.8cqw">5 分钟读完</div></div></div>`).join('')}</div></div>`,
+
+'4-1':`<div class="mk" style="background:radial-gradient(60% 55% at 50% 0,rgba(118,96,255,.42),transparent 70%),#0b0b0d;color:#f5f5f5;font-family:${SANS};text-align:center">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:3cqw 6cqw 0;font-size:1.5cqw;color:#9a9aa3;text-align:left"><b style="color:#f5f5f5;font-size:2cqw;font-weight:600">Tempo</b><span>产品　方法　更新日志</span><span style="border:.12cqw solid rgba(255,255,255,.18);border-radius:1cqw;padding:.7cqw 1.6cqw;color:#f5f5f5">登录</span></div>
+<div style="margin-top:6cqw"><span style="display:inline-block;font-size:1.3cqw;color:#c9c4ff;border:.12cqw solid rgba(255,255,255,.14);border-radius:9cqw;padding:.6cqw 1.8cqw">2.0 已发布</span></div>
+<div style="font-size:5.6cqw;font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-top:2cqw">为专注而生的<br>任务引擎</div>
+<div style="font-size:1.7cqw;color:#a1a1aa;margin-top:1.8cqw">键盘优先，毫秒响应，没有多余的东西。</div>
+<div style="margin-top:2.6cqw;font-size:1.5cqw"><span style="display:inline-block;background:#f5f5f5;color:#0b0b0d;border-radius:1cqw;padding:.9cqw 2.2cqw;font-weight:600">开始使用</span>　<span style="display:inline-block;border:.12cqw solid rgba(255,255,255,.18);border-radius:1cqw;padding:.9cqw 2.2cqw">看演示</span></div>
+<div style="position:absolute;left:12cqw;right:12cqw;top:48cqw;height:24cqw;background:#131316;border:.12cqw solid rgba(255,255,255,.12);border-radius:1.6cqw 1.6cqw 0 0;box-shadow:0 0 9cqw rgba(118,96,255,.45);display:flex;text-align:left;overflow:hidden"><div style="width:22%;border-right:.12cqw solid rgba(255,255,255,.08);padding:1.4cqw 2cqw">${g(70,'#2c2c33')}${g(50,'#2c2c33')}${g(60,'#2c2c33')}</div><div style="flex:1;padding:1.4cqw 2.6cqw">${g(40,'#3a3a44',1.2)}${g(90,'#24242a')}${g(84,'#24242a')}</div></div></div>`,
+
+'4-2':`<div class="mk" style="background:#0a0a0b;color:#f5f5f5;font-family:${SANS};padding:6cqw">
+<div style="font-size:4cqw;font-weight:600;letter-spacing:-.03em">快，而且安静</div><div style="font-size:1.7cqw;color:#a1a1aa;margin-top:1.2cqw">三个让你留下来的理由。</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;margin-top:4cqw">${[
+['rgba(118,96,255,.5)','毫秒级同步',`<div style="margin-bottom:auto;padding-top:3cqw;text-align:center;font-size:5cqw;font-weight:600;letter-spacing:-.03em">12<span style="font-size:2cqw;color:#a1a1aa;letter-spacing:0"> ms</span></div>`],
+['rgba(0,200,255,.45)','全键盘操作',`<div style="display:flex;gap:.8cqw;margin-bottom:auto;padding-top:3cqw;justify-content:center">${['⌘','K'].map(k=>`<span style="display:inline-flex;align-items:center;justify-content:center;width:6cqw;height:6cqw;border-radius:1.2cqw;background:#1e1e22;border:.12cqw solid rgba(255,255,255,.16);border-bottom-width:.5cqw;font-size:2.6cqw">${k}</span>`).join('')}</div>`],
+['rgba(255,90,140,.45)','离线也能用',`<div style="margin:3cqw auto auto;width:7cqw;height:7cqw;border-radius:50%;border:.5cqw solid rgba(255,255,255,.85);border-right-color:rgba(255,255,255,.2)"></div>`]
+].map(r=>`<div style="height:30cqw;background:radial-gradient(90% 60% at 50% 0,${r[0]},transparent 70%),#141416;border:.12cqw solid rgba(255,255,255,.08);border-radius:1.6cqw;padding:2.4cqw;display:flex;flex-direction:column;justify-content:flex-end">${r[2]}<b style="font-size:2.1cqw;font-weight:600">${r[1]}</b>${g(100,'#2a2a30')}${g(72,'#2a2a30')}</div>`).join('')}</div></div>`,
+
+'5-1':`<div class="mk" style="background:#ffcf33;color:#23203a;font-family:${ROUND}">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:3.4cqw 6cqw 0"><b style="font-size:3cqw;font-weight:800">Bloop!</b><span style="background:#23203a;color:#fff;font-size:1.5cqw;font-weight:700;border-radius:9cqw;padding:.9cqw 2.2cqw">下载</span></div>
+<div style="position:absolute;left:6cqw;top:17cqw;width:48cqw"><div style="font-size:5.6cqw;font-weight:800;line-height:1.14;letter-spacing:-.02em">每天 5 分钟，<br>学会一件小事</div><div style="font-size:1.8cqw;font-weight:600;margin-top:2cqw;opacity:.75">像玩游戏一样养成习惯。</div><span style="display:inline-block;margin-top:3.2cqw;background:#ff5c8a;color:#fff;font-size:2.1cqw;font-weight:800;padding:1.4cqw 3.6cqw;border-radius:9cqw;border-bottom:.9cqw solid #c93a66">开始玩</span></div>
+<div style="position:absolute;right:8cqw;top:15cqw;width:30cqw;height:36cqw">
+<i style="position:absolute;left:7cqw;bottom:1.4cqw;width:6cqw;height:3.6cqw;background:#23203a;border-radius:9cqw"></i><i style="position:absolute;right:7cqw;bottom:1.4cqw;width:6cqw;height:3.6cqw;background:#23203a;border-radius:9cqw"></i>
+<i style="position:absolute;inset:4cqw 0;background:#18c5b5;border-radius:48% 52% 44% 56%/56% 54% 46% 44%;border:.5cqw solid #23203a"></i>
+<i style="position:absolute;left:6cqw;top:12cqw;width:7cqw;height:7cqw;border-radius:50%;background:#fff;border:.4cqw solid #23203a"></i><i style="position:absolute;left:8.6cqw;top:14.2cqw;width:3cqw;height:3cqw;border-radius:50%;background:#23203a"></i>
+<i style="position:absolute;right:6cqw;top:12cqw;width:7cqw;height:7cqw;border-radius:50%;background:#fff;border:.4cqw solid #23203a"></i><i style="position:absolute;right:8.6cqw;top:14.2cqw;width:3cqw;height:3cqw;border-radius:50%;background:#23203a"></i>
+<i style="position:absolute;left:10cqw;top:21cqw;width:10cqw;height:5cqw;border-bottom:.6cqw solid #23203a;border-radius:0 0 50% 50%/0 0 100% 100%"></i></div>
+<i style="position:absolute;right:40cqw;top:13cqw;width:5cqw;height:5cqw;background:#ff5c8a;clip-path:${STAR}"></i>
+<i style="position:absolute;right:5cqw;top:10cqw;width:2.6cqw;height:2.6cqw;background:#7c5cff;transform:rotate(24deg)"></i>
+<i style="position:absolute;right:42cqw;top:44cqw;width:2.4cqw;height:2.4cqw;border-radius:50%;background:#fff"></i>
+<i style="position:absolute;right:4cqw;top:46cqw;width:4cqw;height:4cqw;background:#fff;clip-path:${STAR}"></i></div>`,
+
+'5-2':`<div class="mk" style="background:#fff;color:#23203a;font-family:${ROUND};padding:5cqw 6cqw">
+<div style="font-size:4.2cqw;font-weight:800;text-align:center">三步就上手</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2.6cqw;margin-top:5cqw">${[['#ffd9e6','#ff5c8a','选一个目标',-2.5,`clip-path:${STAR}`],['#c9f5e3','#18c5b5','每天打卡',1.5,'border-radius:50%'],['#e2dbff','#7c5cff','解锁徽章',-1,'border-radius:2.4cqw;transform:rotate(45deg) scale(.8)']].map((r,i)=>`<div style="background:${r[0]};border-radius:3.6cqw;padding:3cqw 2.6cqw;height:33cqw;transform:rotate(${r[3]}deg)"><i style="width:9cqw;height:9cqw;background:${r[1]};${r[4]}"></i><div style="font-size:2.5cqw;font-weight:800;margin-top:2.6cqw">${r[2]}</div>${g(100,'rgba(35,32,58,.18)')}${g(66,'rgba(35,32,58,.18)')}<span style="display:inline-block;margin-top:2.4cqw;background:#23203a;color:#fff;border-radius:9cqw;font-size:1.3cqw;font-weight:700;padding:.5cqw 1.6cqw">第 ${i+1} 步</span></div>`).join('')}</div></div>`,
+
+'6-1':`<div class="mk" style="background:#fff;color:#000;font-family:'Times New Roman',Times,'Songti SC',serif;padding:2.4cqw 2.6cqw">
+<div style="font-size:7cqw;font-weight:700;line-height:1">案例索引 (17)</div>
+<div style="font-size:2cqw;margin-top:1.4cqw"><u style="color:#0000ee">全部</u>　<u style="color:#551a8b">品牌</u>　<u style="color:#0000ee">网站</u>　<u style="color:#0000ee">出版物</u>　<u style="color:#0000ee">关于</u></div>
+<div style="margin-top:2.4cqw;border:.3cqw solid #000;font:1.7cqw ${MONO}">${[['编号','项目','年份','状态'],['017','hustle-v3','2026','上线'],['016','summoner-landing','2026','上线'],['015','armory-index','2025','存档'],['014','lab-notes','2025','存档']].map((r,i)=>`<div style="display:grid;grid-template-columns:13% 51% 16% 20%;${i?'border-top:.3cqw solid #000;':'font-weight:700;'}">${r.map((c,j)=>`<span style="padding:.9cqw 1.2cqw;${j?'border-left:.3cqw solid #000;':''}${i&&j===1?'color:#0000ee;text-decoration:underline':''}">${c}</span>`).join('')}</div>`).join('')}</div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:#f00;color:#fff;font:700 2.2cqw Arial,'PingFang SC',sans-serif;padding:1.2cqw 2.6cqw;white-space:nowrap;overflow:hidden">最后更新 2026-11-10 *** 本站没有动画 *** 本站没有 cookie *** 最后更新 2026-11-10 ***</div></div>`,
+
+'6-2':`<div class="mk" style="background:#fff;color:#000;font-family:Arial,Helvetica,sans-serif">
+<div style="position:absolute;right:0;top:0;width:52cqw;height:40cqw;background:#00f"><span style="position:absolute;left:1.4cqw;bottom:1.2cqw;font:1.5cqw ${MONO};color:#fff">IMG_0031.JPG　2400×1600</span></div>
+<div style="position:absolute;left:1.4cqw;top:1cqw;font:900 19cqw/.84 'Arial Black',Arial,sans-serif;letter-spacing:-.06em">CASE<br>—07</div>
+<div style="position:absolute;left:1.6cqw;top:42.5cqw;width:54cqw;font:1.9cqw/1.35 'Times New Roman','Songti SC',serif">给一家咖啡馆重做的识别系统。没有情绪板，只有一张表格和三次修改。</div>
+<div style="position:absolute;left:0;right:0;bottom:0;border-top:.3cqw solid #000;display:flex;justify-content:space-between;padding:1.2cqw 1.6cqw;font:2cqw 'Times New Roman','Songti SC',serif"><u style="color:#0000ee">&lt;&lt; 上一个</u><span>07 / 17</span><u style="color:#0000ee">下一个 &gt;&gt;</u></div></div>`,
+
+'7-1':`<div class="mk" style="background:#0b0b0b;color:#f4f1ea;font-family:${SERIF};text-align:center">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:3.6cqw 6cqw 0;font:1.05cqw ${SANS};letter-spacing:.24em;color:#a39d90"><span>系列</span><span style="font:1.7cqw ${SERIF};letter-spacing:.42em;color:#f4f1ea;padding-left:.42em">MAISON ORÉ</span><span>预约</span></div>
+<i style="width:.12cqw;height:9cqw;background:#b08d57;margin:9cqw auto 0"></i>
+<div style="font-size:4.4cqw;font-weight:300;letter-spacing:.12em;margin-top:3.4cqw;padding-left:.12em">静，是最后的奢侈</div>
+<div style="font:1.1cqw ${SANS};letter-spacing:.34em;color:#b08d57;margin-top:2.4cqw;padding-left:.34em">二〇二六　秋冬</div>
+<div style="margin-top:4cqw"><span style="font:1.2cqw ${SANS};letter-spacing:.3em;padding:0 0 .7cqw .3em;border-bottom:.12cqw solid #b08d57">探索</span></div>
+<i style="position:absolute;left:6cqw;right:6cqw;bottom:5.4cqw;height:.12cqw;background:rgba(176,141,87,.4)"></i>
+<div style="position:absolute;left:0;right:0;bottom:2.2cqw;font:.95cqw ${SANS};letter-spacing:.3em;color:#7d776b">向下</div></div>`,
+
+'7-2':`<div class="mk" style="background:#f4f1ea;color:#1a1814;font-family:${SERIF}">
+<div style="position:absolute;left:9cqw;top:7cqw;width:33cqw;height:48cqw;background:linear-gradient(160deg,#d8cfbf,#b3a690 55%,#8f826c)"><i style="position:absolute;left:50%;bottom:0;width:9cqw;height:26cqw;margin-left:-4.5cqw;background:linear-gradient(#2b2620,#15120e);border-radius:4.5cqw 4.5cqw 0 0"></i><i style="position:absolute;left:50%;bottom:26cqw;width:3cqw;height:4cqw;margin-left:-1.5cqw;background:#2b2620"></i></div>
+<div style="position:absolute;left:54cqw;top:17cqw;width:30cqw"><div style="font:1.1cqw ${SANS};letter-spacing:.3em;color:#b08d57">第四章</div><div style="font-size:3.9cqw;font-weight:300;line-height:1.3;letter-spacing:.06em;margin-top:2cqw">手工，<br>四十小时</div><i style="width:6cqw;height:.12cqw;background:#1a1814;margin-top:3cqw"></i>${g(100,'#cfc7b8',.7,2.6)}${g(92,'#cfc7b8',.7)}${g(60,'#cfc7b8',.7)}<div style="margin-top:3.6cqw"><span style="font:1.1cqw ${SANS};letter-spacing:.28em;padding-bottom:.7cqw;border-bottom:.12cqw solid #1a1814">阅读故事</span></div></div>
+<div style="position:absolute;right:5cqw;top:4cqw;font:1.05cqw ${SANS};letter-spacing:.3em;color:#8a8375">MAISON ORÉ</div></div>`,
+
+'8-1':`<div class="mk" style="background:#05060a;color:#e8faff;font-family:${SANS}">
+<i style="position:absolute;left:-30%;right:-30%;bottom:-6cqw;height:34cqw;background:linear-gradient(rgba(0,229,255,.85) .34cqw,transparent .34cqw) 0 0/100% 3.4cqw,linear-gradient(90deg,rgba(0,229,255,.85) .34cqw,transparent .34cqw) 0 0/5cqw 100%;transform:perspective(46cqw) rotateX(58deg);transform-origin:50% 100%;-webkit-mask-image:linear-gradient(transparent,#000 60%);mask-image:linear-gradient(transparent,#000 60%)"></i>
+<i style="position:absolute;right:13cqw;top:9cqw;width:25cqw;height:25cqw;border-radius:50%;background:radial-gradient(circle at 34% 30%,#bafcff,#19b8ff 32%,#1a2bff 62%,#070a2a 82%);box-shadow:0 0 8cqw rgba(0,229,255,.55)"></i>
+<i style="position:absolute;right:6cqw;top:16cqw;width:39cqw;height:11cqw;border:.3cqw solid #ff2bd6;border-radius:50%;transform:rotate(-16deg);box-shadow:0 0 2cqw #ff2bd6"></i>
+<div style="position:absolute;left:6cqw;top:14cqw"><div style="font:1.2cqw ${MONO};color:#00e5ff;letter-spacing:.1em">// RUNTIME v4.2</div><div style="font-size:6.4cqw;font-weight:800;line-height:.98;letter-spacing:-.01em;margin-top:1.6cqw">AGENT<br>RUNTIME</div><div style="font-size:1.7cqw;color:#9fb6c4;margin-top:2cqw">为自主智能体而建的运行环境</div><span style="display:inline-block;margin-top:3cqw;font:1.4cqw ${MONO};color:#00e5ff;border:.14cqw solid #00e5ff;padding:1cqw 2.4cqw;box-shadow:0 0 1.6cqw rgba(0,229,255,.6),inset 0 0 1.2cqw rgba(0,229,255,.25)">ENTER &gt;</span></div>
+${corners('#00e5ff')}
+<span style="position:absolute;right:7cqw;top:3.4cqw;font:1.05cqw ${MONO};color:#00e5ff">LAT 37.77 / LON -122.41</span><span style="position:absolute;left:7cqw;bottom:3.4cqw;font:1.05cqw ${MONO};color:#ff2bd6">SYS OK　12 NODES</span></div>`,
+
+'8-2':`<div class="mk" style="background:#070812;color:#d7f7ff;font:1.2cqw ${MONO}">
+${corners('#00e5ff')}
+<div style="position:absolute;left:7cqw;top:5cqw;font-size:1.5cqw;color:#00e5ff;letter-spacing:.08em">AGENTS ONLINE 12/12</div><div style="position:absolute;right:7cqw;top:5.2cqw;color:#ff2bd6">T+ 00:42:17</div>
+<div style="position:absolute;left:7cqw;top:12cqw;width:22cqw">${[['scout-01','RUN','#b6ff00'],['writer-02','RUN','#b6ff00'],['critic-03','IDLE','#5a6b7a'],['deploy-04','RUN','#b6ff00'],['memory-05','SYNC','#ff2bd6']].map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:1.2cqw 0;border-bottom:.1cqw solid rgba(0,229,255,.2)"><span style="display:flex;align-items:center;gap:1cqw"><i style="width:1cqw;height:1cqw;border-radius:50%;background:${r[2]};box-shadow:0 0 1cqw ${r[2]}"></i>${r[0]}</span><span style="color:${r[2]}">${r[1]}</span></div>`).join('')}</div>
+<div style="position:absolute;left:36cqw;top:11cqw;width:35cqw;height:35cqw">
+<i style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 20deg,rgba(0,229,255,.5),transparent 28%)"></i>
+${[0,6,12].map(n=>`<i style="position:absolute;inset:${n}cqw;border:.12cqw solid rgba(0,229,255,.4);border-radius:50%"></i>`).join('')}
+<i style="position:absolute;left:50%;top:0;bottom:0;width:.1cqw;background:rgba(0,229,255,.3)"></i><i style="position:absolute;top:50%;left:0;right:0;height:.1cqw;background:rgba(0,229,255,.3)"></i>
+${[[22,8],[9,19],[25,24],[14,28]].map(p=>`<i style="position:absolute;left:${p[0]}cqw;top:${p[1]}cqw;width:1.3cqw;height:1.3cqw;border-radius:50%;background:#b6ff00;box-shadow:0 0 1.4cqw #b6ff00"></i>`).join('')}</div>
+<div style="position:absolute;right:7cqw;top:12cqw;width:15cqw"><div style="color:#7fa3b3">LOAD</div>${[72,48,90,35,60].map(w=>`<i style="height:1.3cqw;margin-top:1.5cqw;background:rgba(255,43,214,.16)"><i style="width:${w}%;height:100%;background:#ff2bd6;box-shadow:0 0 1cqw #ff2bd6"></i></i>`).join('')}</div>
+<div style="position:absolute;left:7cqw;right:7cqw;bottom:5cqw;border-top:.1cqw solid rgba(0,229,255,.3);padding-top:1.2cqw;color:#7fa3b3">&gt; scout-01：抓取 48 个页面，写入 memory-05 <span style="color:#b6ff00">█</span></div></div>`,
+
+'9-1':`<div class="mk" style="background:#fff;color:#000;font-family:Helvetica,'Helvetica Neue',Arial,'PingFang SC','Noto Sans SC',sans-serif">
+<div style="position:absolute;left:0;top:0;bottom:0;width:41.66%;background:#e30613;color:#fff"><div style="position:absolute;left:4cqw;top:4cqw;font-size:1.4cqw;font-weight:700">Büro Nord</div><div style="position:absolute;left:4cqw;bottom:4cqw;font-size:7.4cqw;font-weight:700;line-height:1;letter-spacing:-.03em">形式<br>追随<br>内容</div></div>
+<div style="position:absolute;left:46cqw;right:4cqw;top:4cqw;font-size:1.4cqw;display:flex;justify-content:space-between"><span>设计事务所　苏黎世</span><span>2026</span></div>
+<div style="position:absolute;left:46cqw;right:4cqw;bottom:4cqw">${[['01','作品','24 个项目'],['02','方法','网格与字体'],['03','出版','3 本书'],['04','联系','每周五回信']].map(r=>`<div style="display:grid;grid-template-columns:5cqw 16cqw 1fr;padding:1.5cqw 0;border-top:.14cqw solid #000;font-size:1.7cqw"><b>${r[0]}</b><b>${r[1]}</b><span style="color:#777">${r[2]}</span></div>`).join('')}</div></div>`,
+
+'9-2':`<div class="mk" style="background:#fff;color:#000;font-family:Helvetica,'Helvetica Neue',Arial,'PingFang SC','Noto Sans SC',sans-serif;padding:4cqw">
+<i style="position:absolute;inset:0 4cqw;background:repeating-linear-gradient(90deg,rgba(227,6,19,.07) 0 5.9cqw,transparent 5.9cqw 7.666cqw)"></i>
+<div style="position:relative;display:flex;justify-content:space-between;font-size:1.5cqw;font-weight:700"><span>案例 2019—2026</span><span>全部 (24)</span></div>
+<div style="position:relative;margin-top:4cqw">${[['01','港口博物馆导视','文化机构','2026'],['02','北线地铁图','公共交通','2025'],['03','Forma 字体样张','字体厂牌','2024'],['04','年度报告 23','基金会','2023']].map((r,i)=>`<div style="display:grid;grid-template-columns:15.33cqw 1fr 23cqw 7.666cqw;align-items:baseline;padding:1.3cqw 0;border-top:.14cqw solid #000"><b style="font-size:6.4cqw;line-height:1;letter-spacing:-.03em;color:${i===1?'#e30613':'#000'}">${r[0]}</b><span style="font-size:2.3cqw;font-weight:700">${r[1]}</span><span style="font-size:1.5cqw;color:#666">${r[2]}</span><span style="font-size:1.5cqw;text-align:right">${r[3]}</span></div>`).join('')}</div></div>`,
+
+'10-1':`<div class="mk" style="background:#f5f5f7;color:#1d1d1f;font-family:${SANS};padding:4cqw 5cqw">
+<div style="text-align:center;font-size:3cqw;font-weight:700;letter-spacing:-.02em">一屏看完所有卖点</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:21cqw;gap:1.8cqw;margin-top:3cqw">
+<div style="grid-column:span 2;grid-row:span 2;border-radius:2.6cqw;background:linear-gradient(140deg,#0a84ff,#5e5ce6);color:#fff;padding:3cqw;display:flex;flex-direction:column;justify-content:flex-end"><div style="font-size:11cqw;font-weight:700;letter-spacing:-.04em;line-height:1">3×</div><div style="font-size:2cqw;font-weight:600;margin-top:1cqw">导出速度</div></div>
+<div style="grid-column:span 2;border-radius:2.6cqw;background:#fff;padding:2.4cqw 2.8cqw;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:2.2cqw;font-weight:700">离线可用</div><div style="font-size:1.4cqw;color:#86868b;margin-top:.6cqw">没有网也能继续写</div></div><span style="width:8cqw;height:4.6cqw;border-radius:9cqw;background:#34c759;position:relative;flex:none"><i style="position:absolute;right:.5cqw;top:.5cqw;width:3.6cqw;height:3.6cqw;border-radius:50%;background:#fff"></i></span></div>
+<div style="border-radius:2.6cqw;background:#fff;padding:2.4cqw;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:4.2cqw;font-weight:700;letter-spacing:-.03em">99.9%</div><div style="font-size:1.4cqw;color:#86868b">在线率</div></div>
+<div style="border-radius:2.6cqw;background:#fff;padding:2.4cqw;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;padding-left:1cqw">${['#ff9f0a','#30d158','#0a84ff','#bf5af2'].map(c=>`<i style="width:4.4cqw;height:4.4cqw;border-radius:50%;background:${c};border:.4cqw solid #fff;margin-left:-1cqw"></i>`).join('')}</div><div style="font-size:1.4cqw;color:#86868b">多人协作</div></div>
+</div></div>`,
+
+'10-2':`<div class="mk" style="background:#000;color:#f5f5f7;font-family:${SANS};padding:4cqw 5cqw">
+<div style="display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:27cqw 25cqw;gap:1.6cqw">
+<div style="grid-column:span 3;background:#1c1c1e;border-radius:2.4cqw;padding:2.4cqw;display:flex;flex-direction:column"><div style="font-size:1.5cqw;color:#98989d">本周专注</div><div style="flex:1;display:flex;align-items:flex-end;gap:1.2cqw;margin-top:1.6cqw">${[40,65,50,80,100,45,30].map(h=>`<i style="flex:1;height:${h}%;border-radius:.8cqw;background:${h===100?'#ff9f0a':'#3a3a3c'}"></i>`).join('')}</div></div>
+<div style="grid-column:span 3;background:#1c1c1e;border-radius:2.4cqw;padding:2.6cqw;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:1.5cqw;color:#98989d">Pro 版 2026</div><div style="font-size:4.4cqw;font-weight:700;letter-spacing:-.03em;line-height:1.12">安静地，<br>把事做完。</div></div>
+<div style="grid-column:span 2;background:#1c1c1e;border-radius:2.4cqw;padding:2.2cqw;display:flex;align-items:center;gap:2cqw"><i style="flex:none;width:12cqw;height:12cqw;border-radius:50%;background:conic-gradient(#30d158 0 72%,#2c2c2e 72%);position:relative"><i style="position:absolute;inset:1.8cqw;border-radius:50%;background:#1c1c1e"></i></i><div><div style="font-size:3cqw;font-weight:700">72%</div><div style="font-size:1.3cqw;color:#98989d">今日目标</div></div></div>
+<div style="grid-column:span 2;background:#ff9f0a;color:#000;border-radius:2.4cqw;padding:2.2cqw;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:7cqw;font-weight:700;letter-spacing:-.03em;line-height:1">⌘K</div><div style="font-size:1.5cqw;font-weight:600">一键直达</div></div>
+<div style="grid-column:span 2;background:#1c1c1e;border-radius:2.4cqw;padding:2.2cqw;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;gap:1cqw">${['#ff453a','#ffd60a','#30d158','#0a84ff','#bf5af2'].map(c=>`<i style="width:3.4cqw;height:3.4cqw;border-radius:50%;background:${c}"></i>`).join('')}</div><div style="font-size:1.5cqw;color:#98989d">5 套主题</div></div>
+</div></div>`,
+
+'11-1':`<div class="mk" style="background:radial-gradient(50% 60% at 18% 22%,#7a5cff,transparent 70%),radial-gradient(45% 55% at 85% 12%,#ff7ab6,transparent 70%),radial-gradient(50% 60% at 78% 92%,#ffb36b,transparent 70%),radial-gradient(45% 55% at 10% 95%,#5ce1e6,transparent 70%),#2a1b5e;color:#fff;font-family:${SANS};text-align:center">
+<div style="position:absolute;left:6cqw;right:6cqw;top:3.4cqw;height:6cqw;border-radius:9cqw;background:rgba(255,255,255,.16);border:.14cqw solid rgba(255,255,255,.35);backdrop-filter:blur(1.6cqw);-webkit-backdrop-filter:blur(1.6cqw);display:flex;align-items:center;justify-content:space-between;padding:0 3cqw;font-size:1.5cqw"><b style="font-size:1.9cqw">Lumi</b><span>活动　社群　定价</span></div>
+<div style="position:absolute;left:20cqw;right:20cqw;top:15cqw;padding:5cqw 4cqw;border-radius:3.2cqw;background:rgba(255,255,255,.16);border:.14cqw solid rgba(255,255,255,.4);backdrop-filter:blur(2.4cqw);-webkit-backdrop-filter:blur(2.4cqw);box-shadow:0 3cqw 8cqw rgba(20,10,60,.25)"><div style="font-size:5cqw;font-weight:700;letter-spacing:-.02em;line-height:1.14">让每场活动<br>都轻一点</div><div style="font-size:1.7cqw;margin-top:1.8cqw;opacity:.92">一个链接，搞定报名、提醒和签到。</div><span style="display:inline-block;margin-top:3cqw;background:#fff;color:#2a1b5e;font-size:1.7cqw;font-weight:700;border-radius:9cqw;padding:1.2cqw 3.2cqw">创建活动</span></div></div>`,
+
+'11-2':`<div class="mk" style="background:linear-gradient(125deg,#c9d6ff,#f3c9ff 52%,#ffe2c4);color:#1b1b3a;font-family:${SANS}">
+<i style="position:absolute;left:30cqw;top:-8cqw;width:36cqw;height:36cqw;border-radius:50%;background:#8f7bff;filter:blur(7cqw);opacity:.55"></i><i style="position:absolute;right:-6cqw;bottom:-10cqw;width:34cqw;height:34cqw;border-radius:50%;background:#ff9ec7;filter:blur(7cqw);opacity:.6"></i>
+<div style="position:absolute;left:5cqw;top:6cqw;bottom:6cqw;width:18cqw;${GL};padding:2.6cqw"><b style="font-size:1.9cqw">Lumi</b>${g(80,'rgba(27,27,58,.28)',1,3)}${g(60,'rgba(27,27,58,.28)',1,2)}${g(70,'rgba(27,27,58,.28)',1,2)}${g(50,'rgba(27,27,58,.28)',1,2)}</div>
+<div style="position:absolute;left:26cqw;right:5cqw;top:6cqw;bottom:6cqw;${GL};padding:3cqw"><div style="font-size:2.6cqw;font-weight:700">本周报名</div><div style="font-size:1.4cqw;opacity:.7;margin-top:.6cqw">比上周多 18%</div><div style="position:absolute;left:3cqw;right:3cqw;bottom:3cqw;height:25cqw;display:flex;align-items:flex-end;gap:2cqw">${[35,55,48,72,64,90,58].map(h=>`<i style="flex:1;height:${h}%;border-radius:1cqw 1cqw 0 0;background:rgba(255,255,255,${h===90?.95:.5});border:.14cqw solid rgba(255,255,255,.85)"></i>`).join('')}</div></div>
+<div style="position:absolute;right:9cqw;top:10cqw;${GL};border-radius:9cqw;padding:.9cqw 2cqw;font-size:1.3cqw;font-weight:600">已同步</div></div>`,
+
+'12-1':`<div class="mk" style="background:#111;color:#f4f1e8;font-family:'Bricolage Grotesque',${SANS}">
+<div style="position:absolute;left:4cqw;top:3.6cqw;right:4cqw;display:flex;justify-content:space-between;font-size:1.4cqw"><span>Halde 字体厂牌</span><span>2026 目录</span></div>
+<div style="position:absolute;left:2.6cqw;top:11cqw;font-size:36cqw;font-weight:800;letter-spacing:-.06em;line-height:.8;white-space:nowrap">Grotesk</div>
+<div style="position:absolute;left:4cqw;right:4cqw;bottom:3.6cqw;display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;font-size:1.4cqw;border-top:.12cqw solid #f4f1e8;padding-top:1.4cqw"><span>12 款字体家族</span><span>可变字重 100—900</span><span style="text-align:right">免费试用</span></div></div>`,
+
+'12-2':`<div class="mk" style="background:#fff;color:#111;font-family:'Noto Sans SC',${SANS};padding:3cqw 4cqw">
+<div style="display:flex;justify-content:space-between;font-size:1.3cqw"><span>周野　独立设计师</span><span>杭州</span></div>
+${[['关于',8.5,'01',0],['作品',17,'02',1],['写作',8.5,'03',0],['联系',8.5,'04',0]].map((r,i)=>`<div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:.12cqw solid #111;margin-top:${i?0:2}cqw"><span style="font-size:${r[1]}cqw;font-weight:900;line-height:1.08;letter-spacing:-.04em;${r[3]?'color:transparent;-webkit-text-stroke:.24cqw #111':''}">${r[0]}</span><span style="font-size:1.3cqw;padding-bottom:1cqw">${r[3]?'24 个项目　':''}${r[2]}</span></div>`).join('')}</div>`,
+
+'13-1':`<div class="mk" style="background:#fffdf5;color:#000;font-family:${SANS}">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:3cqw 5cqw 0"><b style="background:#000;color:#fffdf5;font-size:2cqw;font-weight:900;padding:.6cqw 1.6cqw">STALL</b><span style="background:#ffd23f;${NB};font-size:1.5cqw;font-weight:800;padding:.8cqw 2cqw">开店</span></div>
+<div style="position:absolute;left:5cqw;top:15cqw;width:46cqw"><div style="font-size:5.8cqw;font-weight:900;line-height:1.1;letter-spacing:-.03em">把你的作品<br>卖给全世界</div><div style="font-size:1.8cqw;font-weight:600;margin-top:2cqw">不用懂技术，十分钟开张。</div><div style="margin-top:3.4cqw;display:flex;gap:2cqw;font-size:1.8cqw;font-weight:800"><span style="background:#ff90e8;${NB};padding:1.2cqw 2.8cqw">马上开始</span><span style="background:#fff;${NB};padding:1.2cqw 2.8cqw">看案例</span></div></div>
+<div style="position:absolute;right:7cqw;top:14cqw;width:30cqw;height:30cqw;background:#3b82f6;${NB};transform:rotate(-5deg)"></div>
+<div style="position:absolute;right:10cqw;top:19cqw;width:30cqw;height:28cqw;background:#ffd23f;${NB};transform:rotate(3deg);padding:2.6cqw"><div style="font-size:1.5cqw;font-weight:800">本月收入</div><div style="font-size:5cqw;font-weight:900;letter-spacing:-.03em;margin-top:.6cqw">¥12,480</div><div style="display:flex;align-items:flex-end;gap:1cqw;height:9cqw;margin-top:2cqw">${[40,60,45,80,100].map(h=>`<i style="flex:1;height:${h}%;background:#000"></i>`).join('')}</div></div>
+<i style="position:absolute;right:4cqw;top:9cqw;width:9cqw;height:9cqw;background:#ff90e8;clip-path:${STAR}"></i></div>`,
+
+'13-2':`<div class="mk" style="background:#fffdf5;color:#000;font-family:${SANS};padding:4.4cqw 6cqw">
+<div style="font-size:4.2cqw;font-weight:900;letter-spacing:-.03em">选一个价格，<span style="background:#ff90e8;padding:0 1.2cqw;border:.3cqw solid #000">随时能换</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2.8cqw;margin-top:7cqw;align-items:end">${[['入门','¥0','#fff',0],['创作者','¥49','#ffd23f',1],['工作室','¥199','#ff90e8',0]].map(r=>`<div style="background:${r[2]};${NB};padding:2.6cqw;${r[3]?'transform:translateY(-3cqw)':''}"><div style="font-size:1.7cqw;font-weight:800">${r[0]}</div><div style="font-size:6cqw;font-weight:900;letter-spacing:-.04em;line-height:1.1">${r[1]}<span style="font-size:1.5cqw;letter-spacing:0"> /月</span></div>${g(100,'#000',.5,1.8)}${g(80,'#000',.5)}${g(90,'#000',.5)}<div style="margin-top:2.4cqw;background:#000;color:#fff;text-align:center;font-size:1.6cqw;font-weight:800;padding:1cqw">选这个</div></div>`).join('')}</div></div>`,
+
+'14-1':`<div class="mk" style="background:#0c0c0c;color:#48d597;font:2.35cqw/1.6 ${MONO}">
+<div style="position:absolute;inset:7cqw 6cqw 6cqw;border:.16cqw solid #48d597;padding:4cqw 3.4cqw">
+<span style="position:absolute;left:3cqw;top:-1.9cqw;background:#0c0c0c;padding:0 1.2cqw">armory / tools</span><span style="position:absolute;right:3cqw;top:-1.9cqw;background:#0c0c0c;padding:0 1.2cqw;color:#2f8f63">v0.9.2</span>
+<div style="color:#f2f2f2">&gt; ls tools/</div>
+${[['prompts/','42 items','OK'],['palettes/','18 items','OK'],['snippets/','137 items','OK'],['agents/','9 items','BETA']].map(r=>`<div style="display:grid;grid-template-columns:26cqw 23cqw 1fr"><span>${r[0]}</span><span style="color:#2f8f63">${r[1]}</span><span style="color:${r[2]==='BETA'?'#ffb000':'#48d597'}">[ ${r[2]} ]</span></div>`).join('')}
+<div style="margin-top:3.7cqw;color:#f2f2f2">&gt; open prompts/landing-page.md <span style="background:#48d597">&nbsp;</span></div>
+<div style="color:#2f8f63"># 12 条规则，复制即用</div></div></div>`,
+
+'14-2':`<div class="mk" style="background:#f4f1e8;color:#1a1a1a;font:1.5cqw/1.5 ${MONO};padding:4cqw 5cqw">
+<div style="display:flex;justify-content:space-between;border-bottom:.16cqw solid #1a1a1a;padding-bottom:1cqw"><span>DATASHEET</span><span>DX-014 / REV C</span></div>
+<div style="font-size:3.6cqw;font-weight:700;margin-top:2.6cqw;letter-spacing:-.02em;line-height:1.2">AGENT-01 规格书</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:5cqw;margin-top:3cqw">
+<div>${[['MODEL','A-01'],['CONTEXT','200K'],['TOOLS','14'],['LATENCY','0.8 S'],['STATUS','STABLE']].map(r=>`<div style="display:flex;align-items:baseline;gap:.8cqw;padding:.8cqw 0"><span>${r[0]}</span><i style="flex:1;border-bottom:.16cqw dotted #1a1a1a"></i><b>${r[1]}</b></div>`).join('')}</div>
+<div><div>FIG. 1　流程</div><div style="display:flex;align-items:center;gap:1cqw;margin-top:1.6cqw">${['输入','规划','执行'].map((t,i)=>`${i?'<span>&gt;</span>':''}<span style="border:.16cqw solid #1a1a1a;padding:1.5cqw 1.6cqw">${t}</span>`).join('')}</div><div style="margin-top:2cqw;border:.16cqw solid #1a1a1a;padding:1.2cqw 1.4cqw">记忆 <span style="color:#ff5b00">■</span> 每步写回</div></div>
+</div>
+<div style="position:absolute;left:5cqw;right:5cqw;bottom:4cqw;display:flex;justify-content:space-between;border-top:.16cqw solid #1a1a1a;padding-top:1cqw"><span>2026-11</span><span>PAGE 1 OF 3</span></div>
+<i style="position:absolute;right:5cqw;top:10cqw;width:3cqw;height:3cqw;background:#ff5b00"></i></div>`,
+
+'15-1':`<div class="mk" style="background:#fff;color:#1c2b3a;font-family:${SANS}">
+<i style="position:absolute;left:0;top:0;right:0;height:.6cqw;background:#e8ecf0"></i><i style="position:absolute;left:0;top:0;width:40%;height:.6cqw;background:#e4572e"></i>
+<div style="position:absolute;left:5cqw;top:6cqw;width:54cqw"><div style="font-size:1.4cqw;color:#6b7b8c">城市夜间灯光指数，2016—2026</div>
+<svg viewBox="0 0 100 70" style="display:block;width:100%;margin-top:2.6cqw" aria-hidden="true"><g stroke="#e8ecf0" stroke-width=".4"><line x1="0" y1="14" x2="100" y2="14"/><line x1="0" y1="28" x2="100" y2="28"/><line x1="0" y1="42" x2="100" y2="42"/><line x1="0" y1="56" x2="100" y2="56"/></g><line x1="0" y1="69" x2="100" y2="69" stroke="#1c2b3a" stroke-width=".5"/><polyline points="0,58 12,54 24,50 36,44 48,40 60,22 72,14 84,18 100,10" fill="none" stroke="#b9c4cf" stroke-width="1.2" stroke-linejoin="round"/><polyline points="48,40 60,22 72,14" fill="none" stroke="#e4572e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="60" cy="22" r="2.2" fill="#e4572e" stroke="#fff" stroke-width=".8"/></svg>
+<div style="position:absolute;left:8cqw;top:12.4cqw;width:21cqw;text-align:right;font-size:1.4cqw;font-weight:700;color:#e4572e">2021：一年翻倍</div></div>
+<div style="position:absolute;right:5cqw;top:8cqw;width:28cqw;display:flex;flex-direction:column;gap:2.2cqw">${[['1','一开始，增长很慢。',0],['2','2021 年新区通电，曲线突然变陡。',1],['3','之后进入平台期。',0]].map(r=>`<div style="border:.14cqw solid ${r[2]?'#1c2b3a':'#dfe5ea'};border-left:${r[2]?'.6cqw solid #e4572e':'.14cqw solid #dfe5ea'};border-radius:1cqw;padding:1.8cqw 2cqw;opacity:${r[2]?1:.42};box-shadow:${r[2]?'0 1cqw 3cqw rgba(28,43,58,.12)':'none'}"><div style="font-size:1.2cqw;color:#6b7b8c">第 ${r[0]} 步，共 7 步</div><div style="font-size:1.8cqw;line-height:1.45;font-weight:${r[2]?600:400};margin-top:.6cqw">${r[1]}</div></div>`).join('')}</div></div>`,
+
+'15-2':`<div class="mk" style="background:linear-gradient(#10243d,#2b5876 52%,#e9a66b 88%,#f6d19b);color:#fff;font-family:${SANS}">
+<i style="position:absolute;left:62cqw;top:27cqw;width:9cqw;height:9cqw;border-radius:50%;background:#ffe2b0;box-shadow:0 0 6cqw #ffd08a"></i>
+<i style="position:absolute;left:0;right:0;bottom:0;height:30cqw;background:#3d6b86;clip-path:polygon(0 60%,14% 30%,27% 52%,43% 12%,58% 48%,72% 26%,88% 55%,100% 34%,100% 100%,0 100%)"></i>
+<i style="position:absolute;left:0;right:0;bottom:0;height:23cqw;background:#234a63;clip-path:polygon(0 40%,18% 62%,34% 22%,50% 58%,66% 30%,82% 60%,100% 36%,100% 100%,0 100%)"></i>
+<i style="position:absolute;left:0;right:0;bottom:0;height:14cqw;background:#0f2a3d;clip-path:polygon(0 55%,22% 20%,40% 60%,60% 28%,80% 62%,100% 30%,100% 100%,0 100%)"></i>
+<div style="position:absolute;left:6cqw;top:6cqw"><div style="font-size:1.4cqw;letter-spacing:.2em;opacity:.85">第二章　共五章</div><div style="font-size:16cqw;font-weight:800;line-height:.9;letter-spacing:-.04em;margin-top:1cqw">02</div><div style="font-size:4.4cqw;font-weight:700;margin-top:1cqw">雪线之上</div></div>
+<div style="position:absolute;right:4cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.4cqw">${[0,1,0,0,0].map(a=>`<i style="width:${a?1.6:1}cqw;height:${a?1.6:1}cqw;border-radius:50%;background:#fff;opacity:${a?1:.5};margin:0 auto"></i>`).join('')}</div>
+<div style="position:absolute;left:0;right:0;bottom:2.6cqw;text-align:center;font-size:1.3cqw;letter-spacing:.2em">向下滚动<i style="width:.14cqw;height:3cqw;background:#fff;margin:.8cqw auto 0"></i></div></div>`
+};
+
+/* ---------- render ---------- */
+const pad=n=>String(n).padStart(2,'0');
+const host=u=>u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'');
+
+function figReal(s,i){
+  const r=s.real[i];
+  return `<figure class="ex"><div class="frame"><div class="slot"><span class="nm">${r[0]}</span><span class="hint">待填截图</span></div><div class="strip"><span class="id">${pad(s.n)}-R${i+1}</span><a href="${r[1]}">${host(r[1])}</a></div></div><figcaption>${r[2]}</figcaption></figure>`;
+}
+function figAi(s,i){
+  const a=s.ai[i],key=s.n+'-'+(i+1);
+  return `<figure class="ex"><div class="frame"><div class="shot" role="img" aria-label="AI 渲染示意：${s.cn}，${a.t}">${M[key]}</div><div class="strip"><span class="id">${pad(s.n)}-A${i+1}</span><span class="ai">AI 渲染</span><span class="scene">${a.t}</span></div></div><figcaption><span>${a.p}</span><button type="button" class="copy sm" data-copy="render" data-key="${key}">复制渲染 prompt</button></figcaption></figure>`;
+}
+function card(s){
+  return `<article class="style" id="s${pad(s.n)}" data-n="${s.n}" data-fit="${s.fit.join(' ')}">
+<div class="text">
+<div class="head"><span class="num">${pad(s.n)}</span><h3><span class="cn">${s.cn}</span><span class="en">${s.en}</span></h3></div>
+<p class="def">${s.def}</p>
+<p class="fit"><span class="lab">适合</span>${s.fit.map(f=>`<span class="site">${f}<small>${SITES[f]}</small></span>`).join('')}</p>
+<h4>能偷什么</h4>
+<ol class="steal">${s.steal.map(x=>`<li><div><b>${x[0]}</b>${x[1]}</div></li>`).join('')}</ol>
+<button type="button" class="copy" data-copy="style" data-n="${s.n}">复制为 AI prompt</button>
+</div>
+<div class="shots">
+<h4>真实网站<small>图片框留空，等截图填入</small></h4>
+<div class="row real">${s.real.map((_,i)=>figReal(s,i)).join('')}</div>
+<h4>AI 渲染图<small>Claude 用代码画的示意</small></h4>
+<div class="row ai">${s.ai.map((_,i)=>figAi(s,i)).join('')}</div>
+</div>
+</article>`;
+}
+
+function stylePrompt(s){
+  return `请按「${s.cn} ${s.en}」风格设计网页。\n风格定义：${s.def}\n参考网站（只参考布局、层级和节奏，不复制素材）：\n${s.real.map(r=>`- ${r[0]} ${r[1]}`).join('\n')}\n必须做到：\n${s.steal.map((x,i)=>`${i+1}. ${x[0]}：${x[1]}`).join('\n')}`;
+}
+function renderPrompt(s,a){
+  return `生成一张网页设计稿：桌面端首屏，16:10，高保真界面截图，不带设备外框。\n风格：${s.cn} ${s.en}（${s.def}）\n画面：${a.p}\n页面上的品牌名和文案用虚构内容。`;
+}
+
+const listEl=document.getElementById('list');
+const swWrap=document.getElementById('swatches');
+const siteWrap=document.getElementById('sites');
+const statusEl=document.getElementById('status');
+
+listEl.innerHTML=S.map(card).join('');
+swWrap.innerHTML=`<button type="button" class="sw sw-all" data-style="" aria-pressed="true"><span class="k">All</span><span class="c">全部 15 种</span></button>`+S.map(s=>`<button type="button" class="sw sw-${s.n}" data-style="${s.n}" aria-pressed="false"><span class="k">${pad(s.n)} ${s.en}</span><span class="c">${s.cn}</span></button>`).join('');
+siteWrap.innerHTML=`<button type="button" class="chip" data-site="" aria-pressed="true"><b>全部站点</b></button>`+Object.keys(SITES).map(k=>`<button type="button" class="chip" data-site="${k}" aria-pressed="false"><b>${k}</b><small>${SITES[k]}</small></button>`).join('');
+
+/* ---------- filters ---------- */
+const st={style:null,site:null};
+function apply(){
+  let n=0;
+  listEl.querySelectorAll('.style').forEach(el=>{
+    const ok=(!st.style||Number(el.dataset.n)===st.style)&&(!st.site||el.dataset.fit.split(' ').includes(st.site));
+    el.hidden=!ok;if(ok)n++;
+  });
+  swWrap.querySelectorAll('.sw').forEach(b=>{
+    const v=Number(b.dataset.style)||null;
+    b.setAttribute('aria-pressed',String(v===st.style));
+    if(v)b.classList.toggle('off',!!st.site&&!S[v-1].fit.includes(st.site));
+  });
+  swWrap.classList.toggle('has-sel',st.style!==null);
+  siteWrap.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.site||null)===st.site)));
+  const parts=[];
+  if(st.style)parts.push('风格：'+S[st.style-1].cn);
+  if(st.site)parts.push('站点：'+st.site+'（'+SITES[st.site]+'）');
+  let t;
+  if(!parts.length)t='显示全部 15 种风格。';
+  else if(n===0)t='「'+S[st.style-1].cn+'」不在 '+st.site+' 的推荐风格里。换一个风格或站点，或者清除筛选。';
+  else t='显示 '+n+' / 15 种风格。'+parts.join('，')+'。';
+  statusEl.innerHTML='<span>'+t+'</span>'+(parts.length?'<button type="button" class="clear" id="clear">清除筛选</button>':'');
+}
+swWrap.addEventListener('click',e=>{
+  const b=e.target.closest('.sw');if(!b)return;
+  const v=Number(b.dataset.style)||null;
+  st.style=(v===st.style)?null:v;apply();
+});
+siteWrap.addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  const v=b.dataset.site||null;
+  st.site=(v===st.site)?null:v;apply();
+});
+statusEl.addEventListener('click',e=>{
+  if(e.target.closest('#clear')){st.style=null;st.site=null;apply();}
+});
+apply();
+
+/* ---------- copy ---------- */
+async function copyText(text){
+  try{await navigator.clipboard.writeText(text);return true;}catch(err){}
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    const ok=document.execCommand('copy');ta.remove();return ok;
+  }catch(err){return false;}
+}
+document.addEventListener('click',async e=>{
+  const b=e.target.closest('.copy');if(!b)return;
+  let text='';
+  if(b.dataset.copy==='style')text=stylePrompt(S[Number(b.dataset.n)-1]);
+  else if(b.dataset.copy==='render'){const [n,i]=b.dataset.key.split('-').map(Number);text=renderPrompt(S[n-1],S[n-1].ai[i-1]);}
+  else if(b.dataset.copy==='tpl')text=document.getElementById('tpl').textContent;
+  if(!b.dataset.label)b.dataset.label=b.textContent;
+  const ok=await copyText(text);
+  if(ok){
+    b.textContent='已复制';b.classList.add('done');
+    setTimeout(()=>{b.textContent=b.dataset.label;b.classList.remove('done');},1600);
+  }else{
+    let box=b.parentNode.querySelector('.manual');
+    if(!box){
+      box=document.createElement('textarea');box.className='manual';box.readOnly=true;
+      box.setAttribute('aria-label','prompt 文本');
+      const note=document.createElement('p');note.className='manual-note';note.textContent='浏览器没有允许自动复制。文字已选中，按 Ctrl+C 或 ⌘C 复制。';
+      b.parentNode.appendChild(box);b.parentNode.appendChild(note);
+    }
+    box.value=text;box.focus();box.select();
+  }
+});
+</script>
+</body>
+</html>

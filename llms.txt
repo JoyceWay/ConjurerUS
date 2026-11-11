@@ -1,13 +1,14 @@
 # conjurer.us — llms.txt
 # 召唤师主城 · The Conjurer's Main City (temporary directory)
 
-> conjurer.us is the hub (temporary directory for now). Two buildings are open: the arsenal in the OS, the strategy in Agent.
-> 主城是总目录（目前为临时目录）：武在 OS，策略在 Agent。
+> conjurer.us is the hub (temporary directory for now). Three buildings are open: the arsenal in the OS, the strategy in Agent, the styles in Design.
+> 主城是总目录（目前为临时目录）：武在 OS，策略在 Agent，设计在 Design。
 
 ## Buildings (open now)
 
 - [Conjurer OS 召唤师硅基法典（武/工具与系统，六个月真传）](https://os.conjurer.us/): The six-month transmission: atlas, alchemy furnace, delusion mirror, spirit compass.
 - [B2A 战略统帅部 B2A Strategy Command（卖给 agent 的战略页）](https://agent.conjurer.us/): Four domains, SWOT, four phases, knowledge bridge. All crawler technology lives here.
+- [设计风格收集 Design Styles（设计相关看这边）](https://design.conjurer.us/): Eight top-site styles with how-to takeaways and 10 links worth saving. All design reference lives here.
 
 ## Also in the city (their own domains)
 
